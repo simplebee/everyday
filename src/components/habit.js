@@ -9,8 +9,6 @@ class Habit extends Component {
     return (
       <div>
         <HabitCard />
-        <HabitCard />
-        <HabitCard />
       </div>
     );
   }

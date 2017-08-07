@@ -9,8 +9,10 @@ const style = {
   display: 'inline-block',
 };
 
-const HabitCircle = () => (
-  <Paper style={style} zDepth={1} circle={true} />
+const HabitCircle = (props) => (
+  <Paper style={style} zDepth={1} circle={true}>
+    {props.children}
+  </Paper>
 );
 
 export default HabitCircle;
