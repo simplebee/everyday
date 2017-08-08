@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import habit from './reducer-habit';
 
 const rootReducer = combineReducers({
-  state: (state = null) => state
+  habit
 });
 
 export default rootReducer;
