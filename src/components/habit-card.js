@@ -3,9 +3,9 @@ import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import HabitLine from './habit-line';
 
-const HabitCard = () => (
+const HabitCard = (props) => (
   <Card>
-    <CardTitle title="Card title" />
+    <CardTitle title={props.title} />
     <HabitLine />
     <CardText>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
