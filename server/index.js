@@ -9,15 +9,66 @@ app.get('/api/habit', function(req, res) {
     {
       "1": {
         "id": "1",
-        "name": "Run"
+        "name": "Run",
+        "datapoints": [
+          {
+            "id": "1",
+            "date": "2017-08-07",
+            "value": 1
+          },
+          {
+            "id": "2",
+            "date": "2017-08-08",
+            "value": 1
+          },
+          {
+            "id": "3",
+            "date": "2017-08-09",
+            "value": 1
+          }
+        ]
       },
       "2": {
         "id": "2",
-        "name": "Exercise"
+        "name": "Exercise",
+        "datapoints": [
+          {
+            "id": "1",
+            "date": "2017-08-08",
+            "value": 1
+          },
+          {
+            "id": "2",
+            "date": "2017-08-09",
+            "value": 1
+          },
+          {
+            "id": "3",
+            "date": "2017-08-10",
+            "value": 1
+          }
+        ]
       },
       "3": {
         "id": "3",
-        "name": "Read"
+        "name": "Read",
+        "datapoints": [
+          {
+            "id": "1",
+            "date": "2017-08-09",
+            "value": 1
+          },
+          {
+            "id": "2",
+            "date": "2017-08-10",
+            "value": 1
+          },
+          {
+            "id": "3",
+            "date": "2017-08-11",
+            "value": 1
+          }
+        ]
       }
     }
   );

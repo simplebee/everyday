@@ -6,7 +6,7 @@ import HabitLine from './habit-line';
 const HabitCard = (props) => (
   <Card>
     <CardTitle title={props.title} />
-    <HabitLine />
+    <HabitLine datapoints={props.datapoints}/>
     <CardText>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     </CardText>
