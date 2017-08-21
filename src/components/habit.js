@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import HabitCard from './habit-card';
 import { fetchHabit } from '../actions';
-import _ from 'lodash';
 
 class Habit extends Component {
   
@@ -12,7 +11,7 @@ class Habit extends Component {
   }
 
   renderList() {
-    return _.map(this.props.habit, (habit) => {
+    return this.props.habit.map((habit) => {
       return (
         <HabitCard
           key={habit.id}

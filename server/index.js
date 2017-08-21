@@ -11,71 +11,71 @@ app.use(express.static(path.join(__dirname, '..', 'build')));
 
 app.get('/api/habit', function(req, res) {
   res.json(
-    {
-      "1": {
+    [
+      {
         "id": "1",
         "name": "Run",
         "datapoints": [
           {
             "id": "1",
-            "date": "2017-08-07",
+            "date": "2017-08-21",
             "value": 1
           },
           {
             "id": "2",
-            "date": "2017-08-08",
+            "date": "2017-08-22",
             "value": 1
           },
           {
             "id": "3",
-            "date": "2017-08-09",
+            "date": "2017-08-23",
             "value": 1
           }
         ]
       },
-      "2": {
+      {
         "id": "2",
         "name": "Exercise",
         "datapoints": [
           {
             "id": "1",
-            "date": "2017-08-08",
+            "date": "2017-08-21",
             "value": 1
           },
           {
             "id": "2",
-            "date": "2017-08-09",
+            "date": "2017-08-22",
             "value": 1
           },
           {
             "id": "3",
-            "date": "2017-08-10",
+            "date": "2017-08-23",
             "value": 1
           }
         ]
       },
-      "3": {
+      {
         "id": "3",
         "name": "Read",
         "datapoints": [
           {
             "id": "1",
-            "date": "2017-08-09",
+            "date": "2017-08-21",
             "value": 1
           },
           {
             "id": "2",
-            "date": "2017-08-10",
+            "date": "2017-08-22",
             "value": 1
           },
           {
             "id": "3",
-            "date": "2017-08-11",
+            "date": "2017-08-23",
             "value": 1
           }
         ]
       }
-    }
+    ]
   );
 });
 
