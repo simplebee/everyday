@@ -4,79 +4,17 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const app = express();
+const Habit = require('./models/habit');
 
 mongoose.connect(process.env.DB_URL);
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
 
 app.get('/api/habit', function(req, res) {
-  res.json(
-    [
-      {
-        "id": "1",
-        "name": "Run",
-        "datapoints": [
-          {
-            "id": "1",
-            "date": "2017-08-21",
-            "value": 1
-          },
-          {
-            "id": "2",
-            "date": "2017-08-22",
-            "value": 1
-          },
-          {
-            "id": "3",
-            "date": "2017-08-23",
-            "value": 1
-          }
-        ]
-      },
-      {
-        "id": "2",
-        "name": "Exercise",
-        "datapoints": [
-          {
-            "id": "1",
-            "date": "2017-08-21",
-            "value": 1
-          },
-          {
-            "id": "2",
-            "date": "2017-08-22",
-            "value": 1
-          },
-          {
-            "id": "3",
-            "date": "2017-08-23",
-            "value": 1
-          }
-        ]
-      },
-      {
-        "id": "3",
-        "name": "Read",
-        "datapoints": [
-          {
-            "id": "1",
-            "date": "2017-08-21",
-            "value": 1
-          },
-          {
-            "id": "2",
-            "date": "2017-08-22",
-            "value": 1
-          },
-          {
-            "id": "3",
-            "date": "2017-08-23",
-            "value": 1
-          }
-        ]
-      }
-    ]
-  );
+  Habit.find({}, function(err, habits) {
+    if (err) return console.error(err);
+    res.json(habits);
+  });
 });
 
 app.get('*', function(req, res) {
