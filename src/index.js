@@ -8,11 +8,6 @@ import App from './components/app';
 import reducers from './reducers';
 import './styles/index.css';
 import registerServiceWorker from './registerServiceWorker';
-import injectTapEventPlugin from 'react-tap-event-plugin';
- 
-// Needed for onTouchTap 
-// http://stackoverflow.com/a/34015469/988941 
-injectTapEventPlugin();
 
 const store = createStore(
   reducers,
