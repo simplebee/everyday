@@ -4,12 +4,16 @@ import { bindActionCreators } from 'redux';
 import HabitCard from './habit-card';
 import { fetchHabit } from '../actions';
 
+import { Link } from 'react-router-dom';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+
 class Habit extends Component {
   
   componentDidMount() {
     this.props.fetchHabit();
   }
-
+  
   renderList() {
     return this.props.habit.map((habit) => {
       return (
@@ -21,10 +25,15 @@ class Habit extends Component {
       );
     });
   }
-
+  
   render() {
     return (
       <div>
+        <Link to="/new">
+          <FloatingActionButton>
+            <ContentAdd />
+          </FloatingActionButton>
+        </Link>
         {this.renderList()}
       </div>
     );
