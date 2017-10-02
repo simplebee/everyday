@@ -7,6 +7,7 @@ import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
+import moment from 'moment';
 
 class Habit extends Component {
   
@@ -25,15 +26,16 @@ class Habit extends Component {
     });
   }
 
-  handleDatePickerChange = (type) => (event, date) => {
+  handleDatePickerChange = (name) => (event, date) => {
     this.setState({
-      [type]: date
+      [name]: date
     });
   }
   
-  handleSelectFieldChange = (type) => (event, index, value) => {
+  handleSelectFieldChange = (name) => (event, index, value) => {
     this.setState({
-      [type]: value
+      [name]: value,
+      timesPerWeek: ''
     });
   }
 
@@ -41,8 +43,8 @@ class Habit extends Component {
     const { name, startDate, endDate, timesPerDay, frequency, timesPerWeek } = this.state;
     const data = {
       name,
-      startDate,
-      endDate,
+      startDate: moment(startDate).format("YYYY-MM-DD"),
+      endDate: moment(endDate).format("YYYY-MM-DD"),
       timesPerDay,
       frequency,
       timesPerWeek
@@ -93,16 +95,14 @@ class Habit extends Component {
             <MenuItem value={'weekly'} primaryText="Weekly" />
           </SelectField>
           <br />
-          {
-            this.state.frequency === 'weekly' ? 
-              (<TextField 
-                floatingLabelText="Times per week"
-                name="timesPerWeek"
-                type="number"
-                value={this.state.timesPerWeek}
-                onChange={this.handleChange}
-              />) : null
-          }
+          <TextField 
+            floatingLabelText="Times per week"
+            name="timesPerWeek"
+            type="number"
+            value={this.state.timesPerWeek}
+            onChange={this.handleChange}
+            disabled={this.state.frequency === 'daily'}
+          />
           <br />
           <RaisedButton label="Submit" type="submit" />
           <RaisedButton label="Cancel" type="button" />
