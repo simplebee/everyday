@@ -45,9 +45,9 @@ class Habit extends Component {
       name,
       startDate: moment(startDate).format("YYYY-MM-DD"),
       endDate: moment(endDate).format("YYYY-MM-DD"),
-      timesPerDay,
+      timesPerDay: Number(timesPerDay),
       frequency,
-      timesPerWeek
+      timesPerWeek: Number(timesPerWeek)
     }
     this.props.createHabit(data);
     event.preventDefault();

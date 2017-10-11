@@ -3,12 +3,15 @@ require('dotenv').config()
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const app = express();
 const Habit = require('./models/habit');
 
 mongoose.connect(process.env.DB_URL);
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.get('/api/habit', function(req, res) {
   Habit.find({}, function(err, habits) {
@@ -16,6 +19,12 @@ app.get('/api/habit', function(req, res) {
     res.json(habits);
   });
 });
+
+app.post('/api/habit', function(req, res) {
+  console.log(req.body);
+  res.send('created new habit');
+});
+
 
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, '..', 'build', 'index.html'))
