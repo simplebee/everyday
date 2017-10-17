@@ -51,6 +51,7 @@ class Habit extends Component {
     }
     this.props.createHabit(data);
     event.preventDefault();
+    this.props.history.push('/');
   }
 
   render() {

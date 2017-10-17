@@ -14,8 +14,6 @@ export function fetchHabit() {
 }
 
 export function createHabit(data) {
-  console.log(data);
-
   return (dispatch) => {
     axios.post('/api/habit', data)
       .then((response) => {
@@ -23,10 +21,7 @@ export function createHabit(data) {
           type: CREATE_HABIT,
           payload: response.data
         });
-        console.log(response);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => console.log(error));
   }
 }

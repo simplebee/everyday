@@ -1,18 +1,19 @@
-require('dotenv').config()
-
+require('dotenv').config();
 const express = require('express');
+const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const app = express();
 const Habit = require('./models/habit');
 
+// Database config 
 mongoose.connect(process.env.DB_URL);
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Habit index
 app.get('/api/habit', function(req, res) {
   Habit.find({}, function(err, habits) {
     if (err) return console.error(err);
@@ -20,12 +21,14 @@ app.get('/api/habit', function(req, res) {
   });
 });
 
+// Habit create
 app.post('/api/habit', function(req, res) {
-  console.log(req.body);
-  res.send('created new habit');
+  Habit.create(req.body)
+    .then((habit) => res.json(habit))
+    .catch((err) => console.log(err));
 });
 
-
+// Always redirect to index.html, react router renders on client side 
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, '..', 'build', 'index.html'))
 });
