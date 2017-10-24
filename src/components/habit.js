@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import HabitCard from './habit-card';
-import { fetchHabit } from '../actions';
+import { fetchHabits } from '../actions';
 
 import { Link } from 'react-router-dom';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
@@ -11,7 +11,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 class Habit extends Component {
   
   componentDidMount() {
-    this.props.fetchHabit();
+    this.props.fetchHabits();
   }
   
   renderList() {
@@ -46,7 +46,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchHabit }, dispatch);
+  return bindActionCreators({ fetchHabits }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Habit);
