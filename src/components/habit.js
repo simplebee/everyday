@@ -18,8 +18,9 @@ class Habit extends Component {
     return this.props.habit.map((habit) => {
       return (
         <HabitCard
-          key={habit.id}
+          key={habit._id}
           title={habit.name}
+          habitId={habit._id}
           datapoints={habit.datapoints}
         />
       );
@@ -47,4 +48,5 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchHabit }, dispatch);
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Habit);
