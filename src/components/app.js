@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/new" component={HabitNew} />
-          <Route path="/:id" component={HabitShow} />
+          <Route path="/:habitId" component={HabitShow} />
           <Route path="/" component={Habit} />
         </Switch>
       </BrowserRouter>

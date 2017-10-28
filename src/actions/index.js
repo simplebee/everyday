@@ -1,5 +1,5 @@
 import axios from 'axios'; 
-import { FETCH_HABITS, CREATE_HABIT } from './types';
+import { FETCH_HABITS, CREATE_HABIT, FETCH_HABIT } from './types';
 
 export function fetchHabits() {
   return (dispatch) => {
@@ -19,6 +19,19 @@ export function createHabit(data) {
       .then((response) => {
         dispatch({
           type: CREATE_HABIT,
+          payload: response.data
+        });
+      })
+      .catch((error) => console.log(error));
+  }
+}
+
+export function fetchHabit(habitId) {
+  return (dispatch) => {
+    axios.get(`/api/habit/${habitId}`)
+      .then((response) => {
+        dispatch({
+          type: FETCH_HABIT,
           payload: response.data
         });
       })
