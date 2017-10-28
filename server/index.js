@@ -8,6 +8,8 @@ const Habit = require('./models/habit');
 
 // Database config 
 mongoose.connect(process.env.DB_URL);
+// Use native promise library
+mongoose.Promise = Promise;
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,24 +17,23 @@ app.use(bodyParser.json());
 
 // Habit index
 app.get('/api/habit', function(req, res) {
-  Habit.find({}, function(err, habits) {
-    if (err) return console.error(err);
-    res.json(habits);
-  });
+  Habit.find({}).exec()
+    .then((habits) => res.json(habits))
+    .catch((err) => console.error(err));
 });
 
 // Habit create
 app.post('/api/habit', function(req, res) {
   Habit.create(req.body)
     .then((habit) => res.json(habit))
-    .catch((err) => console.log(err));
+    .catch((err) => console.error(err));
 });
 
 // Habit show
 app.get('/api/habit/:habitId', function(req, res) {
   const habitId = req.params.habitId;
-  Habit.findById(habitId)
-    .then(habit => res.json(habit))
+  Habit.findById(habitId).exec()
+    .then((habit) => res.json(habit))
     .catch((err) => console.error(err));
 });
 
