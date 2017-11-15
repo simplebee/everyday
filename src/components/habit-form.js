@@ -22,18 +22,11 @@ function HabitForm(props) {
           value={props.startDate}
           onChange={props.handleDatePickerChange('startDate')}
         />
-        <DatePicker
-          floatingLabelText="End date"
-          container="inline"
-          name="endDate"
-          value={props.endDate}
-          onChange={props.handleDatePickerChange('endDate')}
-        />
         <TextField 
-          floatingLabelText="Times per day"
-          name="timesPerDay"
+          floatingLabelText="Goal value"
+          name="goalValue"
           type="number"
-          value={props.timesPerDay}
+          value={props.goalValue}
           onChange={props.handleChange}
         />
         <br />
@@ -43,18 +36,10 @@ function HabitForm(props) {
           value={props.frequency}
           onChange={props.handleSelectFieldChange('frequency')}
         >
-          <MenuItem value={'daily'} primaryText="Daily" />
-          <MenuItem value={'weekly'} primaryText="Weekly" />
+          <MenuItem value={'daily'} primaryText="Per day" />
+          <MenuItem value={'weekly'} primaryText="Per week" />
+          <MenuItem value={'monthly'} primaryText="Per month" />
         </SelectField>
-        <br />
-        <TextField 
-          floatingLabelText="Times per week"
-          name="timesPerWeek"
-          type="number"
-          value={props.timesPerWeek}
-          onChange={props.handleChange}
-          disabled={props.frequency === 'daily'}
-        />
         <br />
         <RaisedButton label="Submit" type="submit" />
         <RaisedButton label="Cancel" type="button" />

@@ -10,10 +10,8 @@ class Habit extends Component {
   state = {
     name: '',
     startDate: null,
-    endDate: null,
-    timesPerDay: '',
-    frequency: 'daily',
-    timesPerWeek: ''
+    goalValue: '',
+    frequency: 'daily'
   }
 
   handleChange = (event) => {
@@ -30,20 +28,17 @@ class Habit extends Component {
   
   handleSelectFieldChange = (name) => (event, index, value) => {
     this.setState({
-      [name]: value,
-      timesPerWeek: ''
+      [name]: value
     });
   }
 
   handleSubmit = (event) => {
-    const { name, startDate, endDate, timesPerDay, frequency, timesPerWeek } = this.state;
+    const { name, startDate, goalValue, frequency } = this.state;
     const data = {
       name,
       startDate: moment(startDate).format("YYYY-MM-DD"),
-      endDate: moment(endDate).format("YYYY-MM-DD"),
-      timesPerDay: Number(timesPerDay),
-      frequency,
-      timesPerWeek: Number(timesPerWeek)
+      goalValue: Number(goalValue),
+      frequency
     }
     this.props.createHabit(data);
     event.preventDefault();

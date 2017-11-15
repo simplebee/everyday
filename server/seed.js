@@ -8,10 +8,8 @@ mongoose.connect(process.env.DB_URL);
 const habitJson = {
   "name": "Read",
   "startDate": moment().isoWeekday(1).format("YYYY-MM-DD"),
-  "endDate": moment().isoWeekday(7).format("YYYY-MM-DD"),
-  "timesPerDay": 1,
+  "goalValue": 1,
   "frequency": "daily",
-  "timesPerWeek": 0,
   "datapoints": [
     {
       "date": moment().isoWeekday(1).format("YYYY-MM-DD"),
