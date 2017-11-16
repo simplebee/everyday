@@ -1,4 +1,4 @@
-import { FETCH_HABITS, CREATE_HABIT, FETCH_HABIT } from '../actions/types';
+import { FETCH_HABITS, CREATE_HABIT, FETCH_HABIT, UPDATE_HABIT } from '../actions/types';
 
 function habit(state = [], action) {
   switch (action.type) {
@@ -7,22 +7,29 @@ function habit(state = [], action) {
     case CREATE_HABIT:
       return [...state, action.payload];
     case FETCH_HABIT:
-      return addOrUpdateHabit(state, action);
+      return addOrUpdateItem(state, action);
+    case UPDATE_HABIT:
+      return updateItem(state, action);
     default:
       return state;
   }
 }
 
-function addOrUpdateHabit(state, action) {
-  const newState = [...state];
+function updateItem(state, action) {
   const { payload } = action;
-  const index = newState.findIndex(obj => obj._id === payload._id);
-  if (index === -1) {
-    return [...state, payload];
-  } else {
-    newState[index] = payload;
-    return newState;
+  return state.map(item => {
+    if (item._id === payload._id) {
+      return payload;
+    }
+    return item;
+  });
+}
+
+function addOrUpdateItem(state, action) {
+  if (state.length) {
+    return updateItem(state, action);
   }
+  return [...state, action.payload];
 }
 
 export default habit;

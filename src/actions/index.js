@@ -1,5 +1,5 @@
 import axios from 'axios'; 
-import { FETCH_HABITS, CREATE_HABIT, FETCH_HABIT } from './types';
+import { FETCH_HABITS, CREATE_HABIT, FETCH_HABIT, UPDATE_HABIT } from './types';
 
 export function fetchHabits() {
   return (dispatch) => {
@@ -32,6 +32,19 @@ export function fetchHabit(habitId) {
       .then((response) => {
         dispatch({
           type: FETCH_HABIT,
+          payload: response.data
+        });
+      })
+      .catch((error) => console.log(error));
+  }
+}
+
+export function editHabit(habitId, data) {
+  return (dispatch) => {
+    axios.put(`/api/habit/${habitId}`, data)
+      .then((response) => {
+        dispatch({
+          type: UPDATE_HABIT,
           payload: response.data
         });
       })
