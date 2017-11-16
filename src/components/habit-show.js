@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { fetchHabit } from '../actions';
 import DayPicker from 'react-day-picker';
@@ -37,8 +38,10 @@ class HabitShow extends Component {
   }
 
   render() {
+    const { habitId } = this.props.match.params;
     return (
       <div>
+        <Link to={`/${habitId}/edit`}>Edit</Link>
         <div>
           <DayPicker
             month={new Date()}
