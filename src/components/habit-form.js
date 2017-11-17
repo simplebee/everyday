@@ -4,6 +4,7 @@ import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
+import { Link } from 'react-router-dom';
 
 function HabitForm(props) {
   return (
@@ -42,7 +43,9 @@ function HabitForm(props) {
         </SelectField>
         <br />
         <RaisedButton label="Submit" type="submit" />
-        <RaisedButton label="Cancel" type="button" />
+        <Link to={'/'}>
+          <RaisedButton label="Cancel" type="button" />
+        </Link>
       </div>
     </form>
   );

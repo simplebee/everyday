@@ -57,6 +57,7 @@ class HabitEdit extends Component {
     return (
       <EditForm
         {...this.state}
+        {...this.props}
         handleChange={this.handleChange}
         handleSelectFieldChange={this.handleSelectFieldChange}
         handleSubmit={this.handleSubmit}

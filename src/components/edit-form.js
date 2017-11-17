@@ -3,8 +3,12 @@ import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
+import { Link } from 'react-router-dom';
 
 function EditForm(props) {
+
+  const { habitId } = props.match.params;
+  
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
@@ -35,7 +39,9 @@ function EditForm(props) {
         </SelectField>
         <br />
         <RaisedButton label="Submit" type="submit" />
-        <RaisedButton label="Cancel" type="button" />
+        <Link to={`/${habitId}`}>
+          <RaisedButton label="Cancel" type="button" />
+        </Link>
       </div>
     </form>
   );

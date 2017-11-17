@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { fetchHabit } from '../actions';
 import DayPicker from 'react-day-picker';
+import RaisedButton from 'material-ui/RaisedButton'
 import 'react-day-picker/lib/style.css';
 
 class HabitShow extends Component {
@@ -11,6 +12,11 @@ class HabitShow extends Component {
   componentDidMount() {
     const { habitId } = this.props.match.params;
     this.props.fetchHabit(habitId);
+  }
+  
+  handleDeleteClick = () => {
+    // const { habitId } = this.props.match.params;
+    // // this.props.deleteHabit(habitId);
   }
 
   renderValue(day) {
@@ -41,7 +47,10 @@ class HabitShow extends Component {
     const { habitId } = this.props.match.params;
     return (
       <div>
-        <Link to={`/${habitId}/edit`}>Edit</Link>
+        <Link to={`/${habitId}/edit`}>
+          <RaisedButton label="Edit" />
+        </Link>
+        <RaisedButton label="Delete" onClick={this.handleDeleteClick}/>
         <div>
           <DayPicker
             month={new Date()}
