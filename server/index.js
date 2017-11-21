@@ -45,6 +45,14 @@ app.put('/api/habit/:habitId', function(req, res) {
     .catch((err) => console.error(err));
 });
 
+// Habit destroy
+app.delete('/api/habit/:habitId', function(req, res) {
+  const { habitId } = req.params;
+  Habit.findByIdAndRemove(habitId).exec()
+    .then((habit) => res.json(habit))
+    .catch((err) => console.error(err));
+});
+
 // Always redirect to index.html, react router renders on client side 
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, '..', 'build', 'index.html'))

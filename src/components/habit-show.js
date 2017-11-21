@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import { fetchHabit } from '../actions';
+import { fetchHabit, deleteHabit } from '../actions';
 import DayPicker from 'react-day-picker';
 import RaisedButton from 'material-ui/RaisedButton'
 import 'react-day-picker/lib/style.css';
@@ -15,8 +15,9 @@ class HabitShow extends Component {
   }
   
   handleDeleteClick = () => {
-    // const { habitId } = this.props.match.params;
-    // // this.props.deleteHabit(habitId);
+    const { habitId } = this.props.match.params;
+    this.props.deleteHabit(habitId);
+    this.props.history.push('/');
   }
 
   renderValue(day) {
@@ -70,7 +71,8 @@ function mapStateToProps(state, ownProps) {
 }
 
 const mapDispatchToProps = {
-  fetchHabit
+  fetchHabit,
+  deleteHabit
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HabitShow);
