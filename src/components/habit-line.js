@@ -4,21 +4,25 @@ import moment from 'moment';
 
 class HabitLine extends Component {
 
-  getDatapointValue(date) {
-    const findDatapoint = this.props.datapoints.find((datapoint) => {
+  getDatapoint(date) {
+    const { datapoints } = this.props.habit;
+    return datapoints.find((datapoint) => {
       return moment(datapoint.date).isSame(date);
     });
-    if (findDatapoint) return findDatapoint.value;
   }
 
   renderWeek() {
     const arr = [];
     for (var i = 1; i < 8; i++) {
       const date = moment().isoWeekday(i).startOf('date');
+      const datapoint = this.getDatapoint(date);
       arr.push(
-        <HabitCircle>
+        <HabitCircle
+          habit={this.props.habit}
+          date={date}
+        >
           <div>{date.format('D')}</div>
-          <div>{this.getDatapointValue(date)}</div>
+          <div>{datapoint && datapoint.value}</div>
         </HabitCircle>
       );
     }

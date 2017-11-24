@@ -6,7 +6,7 @@ const Habit = require('./models/habit');
 mongoose.connect(process.env.DB_URL);
 
 const habitJson = {
-  "name": "Read",
+  "name": "Run",
   "startDate": moment().isoWeekday(1).format("YYYY-MM-DD"),
   "goalValue": 1,
   "frequency": "daily",
@@ -36,7 +36,10 @@ function createJson(obj, n) {
 
 function seed() {
   Habit.remove()
-    .then(() => Habit.create(createJson(habitJson, 3)))
+    .then(() => {
+      Habit.create(createJson(habitJson, 3))
+      console.log('Created habits')
+    })
     .catch((err) => console.error(err));
 }
 

@@ -19,9 +19,7 @@ class Habit extends Component {
       return (
         <HabitCard
           key={habit._id}
-          title={habit.name}
-          habitId={habit._id}
-          datapoints={habit.datapoints}
+          habit={habit}
         />
       );
     });
