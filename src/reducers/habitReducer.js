@@ -1,4 +1,10 @@
-import { FETCH_HABITS, CREATE_HABIT, FETCH_HABIT, UPDATE_HABIT, DELETE_HABIT } from '../actions/types';
+import {
+  FETCH_HABITS,
+  CREATE_HABIT,
+  FETCH_HABIT,
+  UPDATE_HABIT,
+  DELETE_HABIT
+} from '../actions/actionTypes';
 
 function habit(state = [], action) {
   switch (action.type) {

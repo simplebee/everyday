@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import { fetchHabit, deleteHabit } from '../actions';
+import { fetchHabit, deleteHabit } from '../actions/habitActions';
 import DayPicker from 'react-day-picker';
 import RaisedButton from 'material-ui/RaisedButton'
 import 'react-day-picker/lib/style.css';

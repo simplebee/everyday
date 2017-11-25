@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import EditForm from './edit-form'
-import { fetchHabit, editHabit } from '../actions';
+import { fetchHabit, editHabit } from '../actions/habitActions';
 
 class HabitEdit extends Component {
 

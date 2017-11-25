@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import HabitCard from './habit-card';
-import { fetchHabits } from '../actions';
+import { fetchHabits } from '../actions/habitActions';
 
 import { Link } from 'react-router-dom';
 import FloatingActionButton from 'material-ui/FloatingActionButton';

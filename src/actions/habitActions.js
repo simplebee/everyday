@@ -1,5 +1,11 @@
 import axios from 'axios'; 
-import { FETCH_HABITS, CREATE_HABIT, FETCH_HABIT, UPDATE_HABIT, DELETE_HABIT } from './types';
+import {
+  FETCH_HABITS,
+  CREATE_HABIT,
+  FETCH_HABIT,
+  UPDATE_HABIT,
+  DELETE_HABIT
+} from './actionTypes';
 
 export function fetchHabits() {
   return (dispatch) => {

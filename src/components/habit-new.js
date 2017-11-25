@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createHabit } from '../actions';
+import { createHabit } from '../actions/habitActions';
 import HabitForm from './habit-form'
 import moment from 'moment';
 
