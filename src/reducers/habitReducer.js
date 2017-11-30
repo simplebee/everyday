@@ -3,7 +3,8 @@ import {
   CREATE_HABIT,
   FETCH_HABIT,
   UPDATE_HABIT,
-  DELETE_HABIT
+  DELETE_HABIT,
+  ADD_DATAPOINT
 } from '../actions/actionTypes';
 
 function habit(state = [], action) {
@@ -11,21 +12,35 @@ function habit(state = [], action) {
     case FETCH_HABITS:
       return action.payload;
     case CREATE_HABIT:
-      return [...state, action.payload];
+      return addItem(state, action);
     case FETCH_HABIT:
       return addOrUpdateItem(state, action);
     case UPDATE_HABIT:
       return updateItem(state, action);
     case DELETE_HABIT:
       return deleteItem(state, action);
+    case ADD_DATAPOINT:
+      return state.map(item => {
+        if (item._id === action.habitId) {
+          return {
+            ...item,
+            datapoints: addOrUpdateItem(item.datapoints, action)
+          };
+        }
+        return item;
+      });
     default:
       return state;
   }
 }
 
-function updateItem(state, action) {
+function addItem(arr, action) {
+  return [...arr, action.payload];
+}
+
+function updateItem(arr, action) {
   const { payload } = action;
-  return state.map(item => {
+  return arr.map(item => {
     if (item._id === payload._id) {
       return payload;
     }
@@ -33,15 +48,16 @@ function updateItem(state, action) {
   });
 }
 
-function addOrUpdateItem(state, action) {
-  if (state.length) {
-    return updateItem(state, action);
+function addOrUpdateItem(arr, action) {
+  const findItem = arr.findIndex(item => item._id === action.payload._id);
+  if (findItem !== -1) {
+    return updateItem(arr, action);
   }
-  return [...state, action.payload];
+  return addItem(arr, action);
 }
 
-function deleteItem(state, action) {
-  return state.filter(item => item._id !== action.payload._id);
+function deleteItem(arr, action) {
+  return arr.filter(item => item._id !== action.payload._id);
 }
 
 export default habit;

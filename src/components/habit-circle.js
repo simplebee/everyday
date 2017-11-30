@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
 import Popover from 'material-ui/Popover';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import { addDatapoint } from '../actions/datapointActions';
 
 const style = {
   height: 50,
@@ -42,8 +44,11 @@ class HabitCircle extends Component {
     const { datapointValue } = this.state;
     const { _id } = this.props.habit;
     const dateStr = this.props.date.format("YYYY-MM-DD");
-    // this.props.addDatapoint(_id, date, datapointValue);
-    console.log(_id, dateStr, datapointValue);
+    const data = {
+      date: dateStr,
+      value: datapointValue
+    }
+    this.props.addDatapoint(_id, data);
   }
 
   render() {
@@ -82,4 +87,8 @@ class HabitCircle extends Component {
   }
 }
 
-export default HabitCircle;
+const mapDispatchToProps = {
+  addDatapoint
+}
+
+export default connect(null, mapDispatchToProps)(HabitCircle);
