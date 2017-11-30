@@ -1,16 +1,12 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-const habitSchema = new mongoose.Schema({
+const habitSchema = new Schema({
   name: String,
   startDate: String,
   goalValue: Number,
   frequency: String,
-  datapoints: [
-    {
-      date: String,
-      value: Number
-    }
-  ]
+  datapoints: [{ type: Schema.Types.ObjectId, ref: 'Datapoint' }]
 });
 
 const Habit = mongoose.model('Habit', habitSchema);
