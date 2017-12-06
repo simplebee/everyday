@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import EditForm from './edit-form'
+import EditHabitForm from './EditHabitForm'
 import { fetchHabit, editHabit } from '../actions/habitActions';
 
-class HabitEdit extends Component {
+class EditHabitPage extends Component {
 
   state = {
     name: '',
@@ -55,7 +55,7 @@ class HabitEdit extends Component {
 
   render() {
     return (
-      <EditForm
+      <EditHabitForm
         {...this.state}
         {...this.props}
         handleChange={this.handleChange}
@@ -78,4 +78,4 @@ const mapDispatchToProps = {
   editHabit
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HabitEdit);
+export default connect(mapStateToProps, mapDispatchToProps)(EditHabitPage);

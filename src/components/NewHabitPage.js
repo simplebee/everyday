@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createHabit } from '../actions/habitActions';
-import HabitForm from './habit-form'
+import NewHabitForm from './NewHabitForm'
 import moment from 'moment';
 
-class Habit extends Component {
+class NewHabitPage extends Component {
   
   state = {
     name: '',
@@ -48,7 +48,7 @@ class Habit extends Component {
   render() {
     return (
       <div>
-        <HabitForm
+        <NewHabitForm
           {...this.state}
           handleChange={this.handleChange}
           handleDatePickerChange={this.handleDatePickerChange}
@@ -64,4 +64,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ createHabit }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(Habit);
+export default connect(null, mapDispatchToProps)(NewHabitPage);

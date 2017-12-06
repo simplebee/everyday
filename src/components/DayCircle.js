@@ -14,7 +14,7 @@ const style = {
   display: 'inline-block',
 };
 
-class HabitCircle extends Component {
+class DayCircle extends Component {
   state = {
     open: false,
     datapointValue: 1
@@ -91,4 +91,4 @@ const mapDispatchToProps = {
   addDatapoint
 }
 
-export default connect(null, mapDispatchToProps)(HabitCircle);
+export default connect(null, mapDispatchToProps)(DayCircle);

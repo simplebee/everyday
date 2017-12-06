@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router-dom';
-import HabitLine from './habit-line';
+import WeekLine from './WeekLine';
 
 const HabitCard = (props) => {
 
@@ -13,7 +13,7 @@ const HabitCard = (props) => {
       <Link to={'/' + habit._id}>
         <CardTitle title={habit.name} />
       </Link>
-      <HabitLine habit={habit} />
+      <WeekLine habit={habit} />
       <CardText>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </CardText>

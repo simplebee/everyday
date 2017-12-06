@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import HabitCircle from './habit-circle';
+import DayCircle from './DayCircle';
 import moment from 'moment';
 
-class HabitLine extends Component {
+class WeekLine extends Component {
 
   getDatapoint(date) {
     const { datapoints } = this.props.habit;
@@ -17,13 +17,13 @@ class HabitLine extends Component {
       const date = moment().isoWeekday(i).startOf('date');
       const datapoint = this.getDatapoint(date);
       arr.push(
-        <HabitCircle
+        <DayCircle
           habit={this.props.habit}
           date={date}
         >
           <div>{date.format('D')}</div>
           <div>{datapoint && datapoint.value}</div>
-        </HabitCircle>
+        </DayCircle>
       );
     }
     return arr;
@@ -38,4 +38,4 @@ class HabitLine extends Component {
   }
 }
 
-export default HabitLine;
+export default WeekLine;

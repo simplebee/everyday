@@ -7,7 +7,7 @@ import DayPicker from 'react-day-picker';
 import RaisedButton from 'material-ui/RaisedButton'
 import 'react-day-picker/lib/style.css';
 
-class HabitShow extends Component {
+class HabitPage extends Component {
   
   componentDidMount() {
     const { habitId } = this.props.match.params;
@@ -75,4 +75,4 @@ const mapDispatchToProps = {
   deleteHabit
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HabitShow);
+export default connect(mapStateToProps, mapDispatchToProps)(HabitPage);

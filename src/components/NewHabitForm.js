@@ -6,7 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router-dom';
 
-function HabitForm(props) {
+function NewHabitForm(props) {
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
@@ -51,4 +51,4 @@ function HabitForm(props) {
   );
 }
 
-export default HabitForm;
+export default NewHabitForm;
