@@ -9,8 +9,8 @@ class NewHabitPage extends Component {
   
   state = {
     name: '',
-    startDate: null,
-    goalValue: '',
+    startDate: moment(),
+    goalValue: 1,
     frequency: 'daily'
   }
 
@@ -20,15 +20,9 @@ class NewHabitPage extends Component {
     });
   }
 
-  handleDatePickerChange = (name) => (event, date) => {
+  handleDatePickerChange = (name) => (date) => {
     this.setState({
       [name]: date
-    });
-  }
-  
-  handleSelectFieldChange = (name) => (event, index, value) => {
-    this.setState({
-      [name]: value
     });
   }
 
@@ -36,10 +30,11 @@ class NewHabitPage extends Component {
     const { name, startDate, goalValue, frequency } = this.state;
     const data = {
       name,
-      startDate: moment(startDate).format("YYYY-MM-DD"),
-      goalValue: Number(goalValue),
+      startDate: startDate.format("YYYY-MM-DD"),
+      goalValue: goalValue,
       frequency
     }
+    console.log(data)
     this.props.createHabit(data);
     event.preventDefault();
     this.props.history.push('/');
@@ -52,7 +47,6 @@ class NewHabitPage extends Component {
           {...this.state}
           handleChange={this.handleChange}
           handleDatePickerChange={this.handleDatePickerChange}
-          handleSelectFieldChange={this.handleSelectFieldChange}
           handleSubmit={this.handleSubmit}
         />
       </div>

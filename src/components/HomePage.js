@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 import HabitCard from './HabitCard';
 import { fetchHabits } from '../actions/habitActions';
-
-import { Link } from 'react-router-dom';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import { Button } from 'antd';
 
 class HomePage extends Component {
   
@@ -29,9 +27,7 @@ class HomePage extends Component {
     return (
       <div>
         <Link to="/new">
-          <FloatingActionButton>
-            <ContentAdd />
-          </FloatingActionButton>
+          <Button type="primary" icon="plus">Add habit</Button>
         </Link>
         {this.renderList()}
       </div>

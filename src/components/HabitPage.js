@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { fetchHabit, deleteHabit } from '../actions/habitActions';
 import DayPicker from 'react-day-picker';
-import RaisedButton from 'material-ui/RaisedButton'
+import { Button } from 'antd';
 import 'react-day-picker/lib/style.css';
 
 class HabitPage extends Component {
@@ -49,9 +49,9 @@ class HabitPage extends Component {
     return (
       <div>
         <Link to={`/${habitId}/edit`}>
-          <RaisedButton label="Edit" />
+          <Button icon="edit">Edit</Button>
         </Link>
-        <RaisedButton label="Delete" onClick={this.handleDeleteClick}/>
+        <Button type="danger" icon="delete" onClick={this.handleDeleteClick}>Delete</Button>
         <div>
           <DayPicker
             month={new Date()}

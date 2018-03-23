@@ -1,26 +1,20 @@
 import React from 'react';
-import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import { Card } from 'antd';
 import { Link } from 'react-router-dom';
 import WeekLine from './WeekLine';
 
 const HabitCard = (props) => {
 
   const { habit } = props;
+  const { Meta } = Card;
 
   return (
     <Card>
-      <Link to={'/' + habit._id}>
-        <CardTitle title={habit.name} />
-      </Link>
+      <Meta
+        title={<Link to={'/' + habit._id}>{habit.name}</Link>}
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      />
       <WeekLine habit={habit} />
-      <CardText>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </CardText>
-      <CardActions>
-        <FlatButton label="Action1" />
-        <FlatButton label="Action2" />
-      </CardActions>
     </Card>
   );
 };

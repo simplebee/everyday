@@ -1,49 +1,72 @@
 import React from 'react';
-import TextField from 'material-ui/TextField';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
+import { Form, Input, Radio, Button } from 'antd';
 import { Link } from 'react-router-dom';
 
 function EditForm(props) {
 
   const { habitId } = props.match.params;
   
+  const formItemLayout = {
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 8 },
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 16 },
+    },
+  };
+
+  const tailFormItemLayout = {
+    wrapperCol: {
+      xs: {
+        span: 24,
+        offset: 0,
+      },
+      sm: {
+        span: 16,
+        offset: 8,
+      },
+    },
+  };
+
   return (
-    <form onSubmit={props.handleSubmit}>
-      <div>
-        <TextField 
-          floatingLabelText="Name"
-          name="name"
-          value={props.name}
-          onChange={props.handleChange}
-        />
-        <br />
-        <TextField 
-          floatingLabelText="Goal value"
-          name="goalValue"
-          type="number"
-          value={props.goalValue}
-          onChange={props.handleChange}
-        />
-        <br />
-        <SelectField
-          floatingLabelText="Frequency"
-          name="frequency"
-          value={props.frequency}
-          onChange={props.handleSelectFieldChange('frequency')}
-        >
-          <MenuItem value={'daily'} primaryText="Per day" />
-          <MenuItem value={'weekly'} primaryText="Per week" />
-          <MenuItem value={'monthly'} primaryText="Per month" />
-        </SelectField>
-        <br />
-        <RaisedButton label="Submit" type="submit" />
-        <Link to={`/${habitId}`}>
-          <RaisedButton label="Cancel" type="button" />
-        </Link>
-      </div>
-    </form>
+    <div>
+      <Form onSubmit={props.handleSubmit}>
+        <Form.Item {...formItemLayout} label="Name">
+          <Input 
+            name="name"
+            value={props.name}
+            onChange={props.handleChange}
+          />
+        </Form.Item>
+        <Form.Item {...formItemLayout} label="Goal value">
+          <Input
+            name="goalValue"
+            type="number"
+            value={props.goalValue}
+            onChange={props.handleChange}
+          />
+        </Form.Item>
+        <Form.Item {...formItemLayout} label="Frequency">
+          <Radio.Group
+            name="frequency"
+            value={props.frequency}
+            onChange={props.handleChange}
+          >
+            <Radio value={'daily'}>Daily</Radio>
+            <Radio value={'weekly'}>Weekly</Radio>
+            <Radio value={'monthly'}>Monthly</Radio>
+          </Radio.Group>
+        </Form.Item>
+        <Form.Item {...tailFormItemLayout}>
+          <Button htmlType="submit" type="primary">Submit</Button>
+          <Link to={`/${habitId}`}>
+            <Button>Cancel</Button>
+          </Link>
+        </Form.Item>
+      </Form>
+    </div>
   );
 }
 

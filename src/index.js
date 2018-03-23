@@ -6,6 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProductio
 import thunk from 'redux-thunk';
 import App from './components/App';
 import reducers from './reducers';
+import 'antd/dist/antd.css';
 import './styles/index.css';
 import registerServiceWorker from './registerServiceWorker';
 

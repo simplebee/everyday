@@ -1,41 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Paper from 'material-ui/Paper';
-import Popover from 'material-ui/Popover';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import { Popover, Button, InputNumber } from 'antd';
 import { addDatapoint } from '../actions/datapointActions';
 
-const style = {
-  height: 50,
-  width: 50,
-  margin: 20,
-  textAlign: 'center',
-  display: 'inline-block',
-};
-
 class DayCircle extends Component {
+
   state = {
-    open: false,
     datapointValue: 1
   }
 
-  handlePaperClick = (event) => {
+  handleInputNumberChange = (value) => {
     this.setState({
-      open: true,
-      anchorEl: event.currentTarget
-    });
-  }
-
-  handleRequestClose = () => {
-    this.setState({
-      open: false,
-    });
-  };
-
-  handleInputChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
+      datapointValue: value
     });
   }
 
@@ -52,34 +28,29 @@ class DayCircle extends Component {
   }
 
   render() {
+
+    const content = (
+      <div style={{margin: 5}}>
+        <form onSubmit={this.handleSubmit}>
+          <InputNumber 
+            value={this.state.datapointValue}
+            onChange={this.handleInputNumberChange}
+          />
+          <Button htmlType="submit" type="primary" icon="plus">Add</Button>
+        </form>
+      </div>
+    );
+
     return (
-      <div style={{display: 'inline-block'}}>
-        <Paper
-          style={style}
-          zDepth={1}
-          circle={true}
-          onClick={this.handlePaperClick}
-        >
-          {this.props.children}
-        </Paper>
+      <div className="day-circle">
         <Popover
-          open={this.state.open}
-          anchorEl={this.state.anchorEl}
-          anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
-          targetOrigin={{horizontal: 'middle', vertical: 'top'}}
-          onRequestClose={this.handleRequestClose}
-          useLayerForClickAway={false}
+          content={content}
+          trigger="click"
+          placement="bottomLeft"
+          arrowPointAtCenter
         >
-          <div style={{margin: 10}}>
-            <form onSubmit={this.handleSubmit}>
-              <TextField
-                type="number"
-                name="datapointValue"
-                value={this.state.datapointValue}
-                onChange={this.handleInputChange}
-              />
-              <RaisedButton label="Add" type="submit" />
-            </form>
+          <div className="day-circle__circle">
+            {this.props.children}
           </div>
         </Popover>
       </div>

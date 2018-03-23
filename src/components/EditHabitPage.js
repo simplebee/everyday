@@ -33,12 +33,6 @@ class EditHabitPage extends Component {
       [event.target.name]: event.target.value
     });
   }
-  
-  handleSelectFieldChange = (name) => (event, index, value) => {
-    this.setState({
-      [name]: value
-    });
-  }
 
   handleSubmit = (event) => {
     const { habitId } = this.props.match.params;
@@ -49,6 +43,7 @@ class EditHabitPage extends Component {
       frequency
     }
     this.props.editHabit(habitId, data);
+    console.log(data);
     event.preventDefault();
     this.props.history.push('/');
   }
@@ -59,7 +54,6 @@ class EditHabitPage extends Component {
         {...this.state}
         {...this.props}
         handleChange={this.handleChange}
-        handleSelectFieldChange={this.handleSelectFieldChange}
         handleSubmit={this.handleSubmit}
       />
     );
