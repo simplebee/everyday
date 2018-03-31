@@ -16,3 +16,42 @@ body {
   border: 1px solid lightgrey;
   text-align: center;
 }
+
+.ant-layout{
+  min-height: 100vh;
+}
+
+.logo {
+  float: left;
+  padding: 0 20px 0 0
+}
+
+.logo a{
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;  
+}
+
+.menu{
+  line-height: 64px;
+}
+
+.menu.ant-menu-horizontal{
+  border-bottom: 0;
+}
+
+.content__background{
+  padding: 0 50px;
+}
+
+.content__main{
+  max-width: 1000px;
+  min-height: 500px;
+  margin: 24px auto 0 auto;
+  padding: 24px;
+  background: #fff;
+}
+
+.footer{
+  text-align: center;
+}
