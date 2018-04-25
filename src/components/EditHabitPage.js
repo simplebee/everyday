@@ -41,9 +41,8 @@ class EditHabitPage extends Component {
       name,
       goalValue: Number(goalValue),
       frequency
-    }
+    };
     this.props.editHabit(habitId, data);
-    console.log(data);
     event.preventDefault();
     this.props.history.push('/');
   }
@@ -58,18 +57,18 @@ class EditHabitPage extends Component {
       />
     );
   }
-}
+};
 
 function mapStateToProps(state, ownProps) {
   const { habitId } = ownProps.match.params;
   const { habit } = state;
   const findHabit = habit.find(obj => obj._id === habitId);
   return { habit: findHabit };
-}
+};
 
 const mapDispatchToProps = {
   fetchHabit,
   editHabit
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditHabitPage);

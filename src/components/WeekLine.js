@@ -18,6 +18,7 @@ class WeekLine extends Component {
       const datapoint = this.getDatapoint(date);
       arr.push(
         <DayCircle
+          key={i}
           habit={this.props.habit}
           date={date}
         >

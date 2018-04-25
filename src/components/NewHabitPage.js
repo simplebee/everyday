@@ -33,8 +33,7 @@ class NewHabitPage extends Component {
       startDate: startDate.format("YYYY-MM-DD"),
       goalValue: goalValue,
       frequency
-    }
-    console.log(data)
+    };
     this.props.createHabit(data);
     event.preventDefault();
     this.props.history.push('/');
@@ -52,10 +51,10 @@ class NewHabitPage extends Component {
       </div>
     );
   }
-}
+};
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ createHabit }, dispatch);
-}
+};
 
 export default connect(null, mapDispatchToProps)(NewHabitPage);
