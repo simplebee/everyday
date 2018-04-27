@@ -9,19 +9,19 @@ import {
 
 export function fetchHabits() {
   return (dispatch) => {
-    axios.get('/api/habit')
+    return axios.get('/api/habit')
       .then((response) => {
         dispatch({
           type: FETCH_HABITS,
           payload: response.data
         });
       });
-  }
-}
+  };
+};
 
 export function createHabit(data) {
   return (dispatch) => {
-    axios.post('/api/habit', data)
+    return axios.post('/api/habit', data)
       .then((response) => {
         dispatch({
           type: CREATE_HABIT,
@@ -29,12 +29,12 @@ export function createHabit(data) {
         });
       })
       .catch((error) => console.log(error));
-  }
-}
+  };
+};
 
 export function fetchHabit(habitId) {
   return (dispatch) => {
-    axios.get(`/api/habit/${habitId}`)
+    return axios.get(`/api/habit/${habitId}`)
       .then((response) => {
         dispatch({
           type: FETCH_HABIT,
@@ -42,12 +42,12 @@ export function fetchHabit(habitId) {
         });
       })
       .catch((error) => console.log(error));
-  }
-}
+  };
+};
 
 export function editHabit(habitId, data) {
   return (dispatch) => {
-    axios.put(`/api/habit/${habitId}`, data)
+    return axios.put(`/api/habit/${habitId}`, data)
       .then((response) => {
         dispatch({
           type: UPDATE_HABIT,
@@ -55,12 +55,12 @@ export function editHabit(habitId, data) {
         });
       })
       .catch((error) => console.log(error));
-  }
-}
+  };
+};
 
 export function deleteHabit(habitId) {
   return (dispatch) => {
-    axios.delete(`/api/habit/${habitId}`)
+    return axios.delete(`/api/habit/${habitId}`)
       .then((response) => {
         dispatch({
           type: DELETE_HABIT,
@@ -68,5 +68,5 @@ export function deleteHabit(habitId) {
         });
       })
       .catch((error) => console.log(error));
-  }
-}
+  };
+};

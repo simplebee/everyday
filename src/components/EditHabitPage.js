@@ -42,9 +42,10 @@ class EditHabitPage extends Component {
       goalValue: Number(goalValue),
       frequency
     };
-    this.props.editHabit(habitId, data);
     event.preventDefault();
-    this.props.history.push('/');
+    this.props.editHabit(habitId, data)
+      .then(() => this.props.history.push('/'))
+      .catch((error) => console.log(error));
   }
 
   render() {

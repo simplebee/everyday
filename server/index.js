@@ -50,8 +50,13 @@ app.put('/api/habit/:habitId', function(req, res) {
 app.delete('/api/habit/:habitId', function(req, res) {
   const { habitId } = req.params;
   Habit.findByIdAndRemove(habitId).exec()
-    .then(habit => habit.datapoints.map(_id => Datapoint.findByIdAndRemove(_id).exec()))
-    .then(promises => Promise.all(promises))
+    .then(habit => {
+      const promises = habit.datapoints.map(datapointId => {
+        return Datapoint.findByIdAndRemove(datapointId).exec();
+      });
+      return Promise.all(promises)
+        .then(() => res.json(habit));
+    })
     .catch((err) => console.error(err));
 });
 
