@@ -74,7 +74,6 @@ app.post('/api/habit/:habitId/datapoint', function(req, res) {
         .in(habit.datapoints)
         .where('date').equals(date)
         .exec(addOrUpdateDatapoint)
-        .catch((err) => console.error(err));
       })
   
   function addOrUpdateDatapoint(err, data) {
