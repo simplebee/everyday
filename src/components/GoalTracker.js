@@ -4,12 +4,13 @@ import { makeGoalTotalSelector, makePercentSelector } from '../selectors';
 import { Progress } from 'antd';
 
 class GoalTracker extends Component {
-
   render() {
     return (
       <div>
         <div>{this.props.habit.frequency}</div>
-        <div>{this.props.goalTotal}/{this.props.habit.goalValue}</div>
+        <div>
+          {this.props.goalTotal}/{this.props.habit.goalValue}
+        </div>
         <Progress percent={this.props.percent} />
       </div>
     );
@@ -26,6 +27,6 @@ const makeMapStateToProps = () => {
     };
   };
   return mapStateToProps;
-}
+};
 
 export default connect(makeMapStateToProps)(GoalTracker);

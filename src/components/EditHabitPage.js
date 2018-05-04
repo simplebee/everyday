@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import EditHabitForm from './EditHabitForm'
+import EditHabitForm from './EditHabitForm';
 import { fetchHabit, editHabit } from '../actions/habitActions';
 
 class EditHabitPage extends Component {
-
   state = {
     name: '',
     goalValue: '',
     frequency: 'daily'
-  }
+  };
 
   componentDidMount() {
     const { habitId } = this.props.match.params;
@@ -28,13 +27,13 @@ class EditHabitPage extends Component {
     }
   }
 
-  handleChange = (event) => {
+  handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
     });
-  }
+  };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     const { habitId } = this.props.match.params;
     const { name, goalValue, frequency } = this.state;
     const data = {
@@ -43,10 +42,11 @@ class EditHabitPage extends Component {
       frequency
     };
     event.preventDefault();
-    this.props.editHabit(habitId, data)
+    this.props
+      .editHabit(habitId, data)
       .then(() => this.props.history.push('/'))
-      .catch((error) => console.log(error));
-  }
+      .catch(error => console.log(error));
+  };
 
   render() {
     return (
@@ -58,14 +58,14 @@ class EditHabitPage extends Component {
       />
     );
   }
-};
+}
 
 function mapStateToProps(state, ownProps) {
   const { habitId } = ownProps.match.params;
   const { habit } = state;
   const findHabit = habit.find(obj => obj._id === habitId);
   return { habit: findHabit };
-};
+}
 
 const mapDispatchToProps = {
   fetchHabit,

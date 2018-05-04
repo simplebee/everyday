@@ -3,42 +3,37 @@ import { Form, Input, Radio, Button } from 'antd';
 import { Link } from 'react-router-dom';
 
 function EditForm(props) {
-
   const { habitId } = props.match.params;
-  
+
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
-      sm: { span: 8 },
+      sm: { span: 8 }
     },
     wrapperCol: {
       xs: { span: 24 },
-      sm: { span: 16 },
-    },
+      sm: { span: 16 }
+    }
   };
 
   const tailFormItemLayout = {
     wrapperCol: {
       xs: {
         span: 24,
-        offset: 0,
+        offset: 0
       },
       sm: {
         span: 16,
-        offset: 8,
-      },
-    },
+        offset: 8
+      }
+    }
   };
 
   return (
     <div>
       <Form onSubmit={props.handleSubmit}>
         <Form.Item {...formItemLayout} label="Name">
-          <Input 
-            name="name"
-            value={props.name}
-            onChange={props.handleChange}
-          />
+          <Input name="name" value={props.name} onChange={props.handleChange} />
         </Form.Item>
         <Form.Item {...formItemLayout} label="Goal value">
           <Input
@@ -60,7 +55,9 @@ function EditForm(props) {
           </Radio.Group>
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
-          <Button htmlType="submit" type="primary">Submit</Button>
+          <Button htmlType="submit" type="primary">
+            Submit
+          </Button>
           <Link to={`/${habitId}`}>
             <Button>Cancel</Button>
           </Link>

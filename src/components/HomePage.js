@@ -7,27 +7,23 @@ import { fetchHabits } from '../actions/habitActions';
 import { Button } from 'antd';
 
 class HomePage extends Component {
-  
   componentDidMount() {
     this.props.fetchHabits();
   }
-  
+
   renderList() {
-    return this.props.habit.map((habit) => {
-      return (
-        <HabitCard
-          key={habit._id}
-          habit={habit}
-        />
-      );
+    return this.props.habit.map(habit => {
+      return <HabitCard key={habit._id} habit={habit} />;
     });
   }
-  
+
   render() {
     return (
       <div>
         <Link to="/new">
-          <Button type="primary" icon="plus">Add habit</Button>
+          <Button type="primary" icon="plus">
+            Add habit
+          </Button>
         </Link>
         {this.renderList()}
       </div>

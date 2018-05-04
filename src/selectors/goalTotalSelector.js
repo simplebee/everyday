@@ -3,7 +3,7 @@ import moment from 'moment';
 
 const habitSelector = (state, props) => props.habit;
 
-const getGoalTotal = (habit) => {
+const getGoalTotal = habit => {
   let habitArray = [];
   switch (habit.frequency) {
     case 'daily':
@@ -16,7 +16,7 @@ const getGoalTotal = (habit) => {
       // week() is locale aware, for locale 'en', start of week is Sun
       habitArray = habit.datapoints.filter(datapoint => {
         const datapointIsoWeek = moment(datapoint.date).isoWeek();
-        const nowIsoWeek = moment().isoWeek()
+        const nowIsoWeek = moment().isoWeek();
         return datapointIsoWeek === nowIsoWeek;
       });
       break;
@@ -34,12 +34,9 @@ const getGoalTotal = (habit) => {
   }, 0);
 
   return sum;
-}
+};
 
-export const goalTotalSelector = createSelector(
-  [habitSelector],
-  getGoalTotal
-); 
+export const goalTotalSelector = createSelector([habitSelector], getGoalTotal);
 
 export const makeGoalTotalSelector = () => {
   return goalTotalSelector;

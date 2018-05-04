@@ -8,18 +8,18 @@ import { Button } from 'antd';
 import 'react-day-picker/lib/style.css';
 
 class HabitPage extends Component {
-  
   componentDidMount() {
     const { habitId } = this.props.match.params;
     this.props.fetchHabit(habitId);
   }
-  
+
   handleDeleteClick = () => {
     const { habitId } = this.props.match.params;
-    this.props.deleteHabit(habitId)
+    this.props
+      .deleteHabit(habitId)
       .then(() => this.props.history.push('/'))
-      .catch((error) => console.log(error));
-  }
+      .catch(error => console.log(error));
+  };
 
   renderValue(day) {
     if (!this.props.habit) return;
@@ -33,17 +33,15 @@ class HabitPage extends Component {
     if (datapoint) return <div>{datapoint.value}</div>;
   }
 
-  renderDay = (day) => {
+  renderDay = day => {
     const date = day.getDate();
     return (
       <div>
         {date}
-        <div>
-          {this.renderValue(day)}
-        </div>
+        <div>{this.renderValue(day)}</div>
       </div>
     );
-  }
+  };
 
   render() {
     const { habitId } = this.props.match.params;
@@ -52,12 +50,11 @@ class HabitPage extends Component {
         <Link to={`/${habitId}/edit`}>
           <Button icon="edit">Edit</Button>
         </Link>
-        <Button type="danger" icon="delete" onClick={this.handleDeleteClick}>Delete</Button>
+        <Button type="danger" icon="delete" onClick={this.handleDeleteClick}>
+          Delete
+        </Button>
         <div>
-          <DayPicker
-            month={new Date()}
-            renderDay={this.renderDay}
-          />
+          <DayPicker month={new Date()} renderDay={this.renderDay} />
         </div>
       </div>
     );
