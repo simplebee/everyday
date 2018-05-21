@@ -7,8 +7,10 @@ router
   .get(datapointController.index)
   .post(datapointController.create);
 
-// show
-// update
-// destroy
+router
+  .route('/:datapointId')
+  .get(datapointController.show)
+  .put(datapointController.update)
+  .delete(datapointController.destroy);
 
 module.exports = router;
