@@ -1,15 +1,14 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
-import { Link } from 'react-router-dom';
 import HomePage from './HomePage';
 import NewHabitPage from './NewHabitPage';
-import HabitPage from './HabitPage';
+import HabitPageLayout from './HabitPageLayout';
 import EditHabitPage from './EditHabitPage';
 
 const { Header, Content, Footer } = Layout;
 
-function MainLayout(props) {
+function MainLayout() {
   return (
     <Layout>
       <Header>
@@ -28,7 +27,7 @@ function MainLayout(props) {
             <Route path="/" exact component={HomePage} />
             <Route path="/new" component={NewHabitPage} />
             <Route path="/:habitId/edit" component={EditHabitPage} />
-            <Route path="/:habitId" component={HabitPage} />
+            <Route path="/:habitId" component={HabitPageLayout} />
           </Switch>
         </div>
       </Content>

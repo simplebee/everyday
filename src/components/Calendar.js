@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { fetchHabit, deleteHabit, editHabit } from '../actions/habitActions';
 import DayPicker from 'react-day-picker';
-import { Button } from 'antd';
 import 'react-day-picker/lib/style.css';
 
-class HabitPage extends Component {
+class Calendar extends Component {
   componentDidMount() {
     const { habitId } = this.props.match.params;
     this.props.fetchHabit(habitId);
@@ -44,20 +42,7 @@ class HabitPage extends Component {
   };
 
   render() {
-    const { habitId } = this.props.match.params;
-    return (
-      <div>
-        <Link to={`/${habitId}/edit`}>
-          <Button icon="edit">Edit</Button>
-        </Link>
-        <Button type="danger" icon="delete" onClick={this.handleDeleteClick}>
-          Delete
-        </Button>
-        <div>
-          <DayPicker month={new Date()} renderDay={this.renderDay} />
-        </div>
-      </div>
-    );
+    return <DayPicker month={new Date()} renderDay={this.renderDay} />;
   }
 }
 
@@ -74,4 +59,4 @@ const mapDispatchToProps = {
   editHabit
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HabitPage);
+export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
