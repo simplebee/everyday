@@ -1,6 +1,6 @@
 import React from 'react';
-import { Form, Input, DatePicker, Radio, Button } from 'antd';
 import { Link } from 'react-router-dom';
+import { Form, Input, DatePicker, Radio, Button } from 'antd';
 
 function NewHabitForm(props) {
   const formItemLayout = {
@@ -63,7 +63,7 @@ function NewHabitForm(props) {
           <Button htmlType="submit" type="primary">
             Submit
           </Button>
-          <Link to={'/'}>
+          <Link to={'/app'}>
             <Button>Cancel</Button>
           </Link>
         </Form.Item>

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { createHabit } from '../actions/habitActions';
-import NewHabitForm from './NewHabitForm';
 import moment from 'moment';
+
+import NewHabitForm from './NewHabitForm';
+import { createHabit } from '../actions/habitActions';
 
 class NewHabitPage extends Component {
   state = {
@@ -35,7 +35,7 @@ class NewHabitPage extends Component {
     };
     this.props.createHabit(data);
     event.preventDefault();
-    this.props.history.push('/');
+    this.props.history.push('/app');
   };
 
   render() {
@@ -52,8 +52,6 @@ class NewHabitPage extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ createHabit }, dispatch);
-}
+const mapDispatchToProps = { createHabit };
 
 export default connect(null, mapDispatchToProps)(NewHabitPage);

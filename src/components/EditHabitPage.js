@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import EditHabitForm from './EditHabitForm';
 import { fetchHabit, editHabit } from '../actions/habitActions';
 
@@ -44,7 +45,7 @@ class EditHabitPage extends Component {
     event.preventDefault();
     this.props
       .editHabit(habitId, data)
-      .then(() => this.props.history.push('/'))
+      .then(() => this.props.history.push('/app'))
       .catch(error => console.log(error));
   };
 

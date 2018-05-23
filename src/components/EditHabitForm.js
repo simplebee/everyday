@@ -1,6 +1,6 @@
 import React from 'react';
-import { Form, Input, Radio, Button } from 'antd';
 import { Link } from 'react-router-dom';
+import { Form, Input, Radio, Button } from 'antd';
 
 function EditForm(props) {
   const { habitId } = props.match.params;
@@ -58,7 +58,7 @@ function EditForm(props) {
           <Button htmlType="submit" type="primary">
             Submit
           </Button>
-          <Link to={`/${habitId}`}>
+          <Link to={`/app/${habitId}`}>
             <Button>Cancel</Button>
           </Link>
         </Form.Item>

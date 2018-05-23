@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
+import { Button } from 'antd';
+
 import HabitCard from './HabitCard';
 import { fetchHabits } from '../actions/habitActions';
-import { Button } from 'antd';
 
 class HomePage extends Component {
   componentDidMount() {
@@ -18,9 +18,11 @@ class HomePage extends Component {
   }
 
   render() {
+    const { match } = this.props;
+
     return (
       <div>
-        <Link to="/new">
+        <Link to={`${match.url}/new`}>
           <Button type="primary" icon="plus">
             Add habit
           </Button>
@@ -35,8 +37,6 @@ function mapStateToProps(state) {
   return { habit: state.habit };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchHabits }, dispatch);
-}
+const mapDispatchToProps = { fetchHabits };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
