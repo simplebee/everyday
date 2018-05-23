@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
+import { Button } from 'antd';
+
 import Calendar from './Calendar';
 import Datapoints from './Datapoints';
 import Graph from './Graph';
-import { Link } from 'react-router-dom';
-import { Button } from 'antd';
+import { deleteHabit } from '../actions/habitActions';
 
 class HabitPageContent extends Component {
+  handleDeleteClick = () => {
+    const { habitId } = this.props.match.params;
+    this.props
+      .deleteHabit(habitId)
+      .then(() => this.props.history.push('/app'))
+      .catch(error => console.log(error));
+  };
+
   render() {
     const { match } = this.props;
     return (
@@ -28,4 +38,6 @@ class HabitPageContent extends Component {
   }
 }
 
-export default withRouter(HabitPageContent);
+const mapDispatchToProps = { deleteHabit };
+
+export default withRouter(connect(null, mapDispatchToProps)(HabitPageContent));

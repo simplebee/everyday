@@ -1,23 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { fetchHabit, deleteHabit, editHabit } from '../actions/habitActions';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
+
+import { fetchHabit } from '../actions/habitActions';
 
 class Calendar extends Component {
   componentDidMount() {
     const { habitId } = this.props.match.params;
     this.props.fetchHabit(habitId);
   }
-
-  handleDeleteClick = () => {
-    const { habitId } = this.props.match.params;
-    this.props
-      .deleteHabit(habitId)
-      .then(() => this.props.history.push('/'))
-      .catch(error => console.log(error));
-  };
 
   renderValue(day) {
     if (!this.props.habit) return;
@@ -53,10 +46,6 @@ function mapStateToProps(state, ownProps) {
   return { habit: habit[index] };
 }
 
-const mapDispatchToProps = {
-  fetchHabit,
-  deleteHabit,
-  editHabit
-};
+const mapDispatchToProps = { fetchHabit };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
