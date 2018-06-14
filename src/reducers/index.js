@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import habit from './habitReducer';
+import habits from './habitReducer';
 
 const rootReducer = combineReducers({
-  habit
+  habits
 });
 
 export default rootReducer;

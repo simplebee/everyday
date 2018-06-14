@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import propTypes from 'prop-types';
 import { Popover, Button, InputNumber } from 'antd';
+
 import { addDatapoint } from '../actions/datapointActions';
+import { habitPropTypes } from '../lib/propTypesValues';
 
 class DayCircle extends Component {
+  static propTypes = {
+    addDatapoint: propTypes.func.isRequired,
+    habit: habitPropTypes,
+    date: propTypes.object.isRequired
+  };
+
   state = {
     datapointValue: 1
   };

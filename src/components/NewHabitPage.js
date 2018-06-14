@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import propTypes from 'prop-types';
 import moment from 'moment';
 
 import NewHabitForm from './NewHabitForm';
 import { createHabit } from '../actions/habitActions';
 
 class NewHabitPage extends Component {
+  static propTypes = {
+    createHabit: propTypes.func.isRequired
+  };
+
   state = {
     name: '',
     startDate: moment(),

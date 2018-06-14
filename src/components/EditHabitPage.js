@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import propTypes from 'prop-types';
 
 import EditHabitForm from './EditHabitForm';
 import { fetchHabit, editHabit } from '../actions/habitActions';
+import { habitPropTypes } from '../lib/propTypesValues';
 
 class EditHabitPage extends Component {
+  static propTypes = {
+    habit: habitPropTypes,
+    fetchHabit: propTypes.func.isRequired,
+    editHabit: propTypes.func.isRequired
+  };
+
   state = {
     name: '',
-    goalValue: '',
+    goalValue: 1,
     frequency: 'daily'
   };
 
@@ -53,7 +61,6 @@ class EditHabitPage extends Component {
     return (
       <EditHabitForm
         {...this.state}
-        {...this.props}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
       />
@@ -63,8 +70,8 @@ class EditHabitPage extends Component {
 
 function mapStateToProps(state, ownProps) {
   const { habitId } = ownProps.match.params;
-  const { habit } = state;
-  const findHabit = habit.find(obj => obj._id === habitId);
+  const { habits } = state;
+  const findHabit = habits.find(obj => obj._id === habitId);
   return { habit: findHabit };
 }
 

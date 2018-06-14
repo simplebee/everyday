@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import propTypes from 'prop-types';
 import moment from 'moment';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
 import { fetchHabit } from '../actions/habitActions';
+import { habitPropTypes } from '../lib/propTypesValues';
 
 class Calendar extends Component {
+  static propTypes = {
+    habit: habitPropTypes,
+    fetchHabit: propTypes.func.isRequired
+  };
+
   componentDidMount() {
     const { habitId } = this.props.match.params;
     this.props.fetchHabit(habitId);
@@ -41,9 +48,9 @@ class Calendar extends Component {
 
 function mapStateToProps(state, ownProps) {
   const { habitId } = ownProps.match.params;
-  const { habit } = state;
-  const index = habit.findIndex(obj => obj._id === habitId);
-  return { habit: habit[index] };
+  const { habits } = state;
+  const index = habits.findIndex(obj => obj._id === habitId);
+  return { habit: habits[index] };
 }
 
 const mapDispatchToProps = { fetchHabit };

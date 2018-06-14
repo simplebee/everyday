@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 
 import HabitCard from './HabitCard';
 import { fetchHabits } from '../actions/habitActions';
+import { habitPropTypes } from '../lib/propTypesValues';
 
 class HomePage extends Component {
+  static propTypes = {
+    fetchHabits: propTypes.func.isRequired,
+    habits: propTypes.arrayOf(habitPropTypes).isRequired
+  };
+
   componentDidMount() {
     this.props.fetchHabits();
   }
 
   renderList() {
-    return this.props.habit.map(habit => {
+    return this.props.habits.map(habit => {
       return <HabitCard key={habit._id} habit={habit} />;
     });
   }
@@ -34,7 +41,7 @@ class HomePage extends Component {
 }
 
 function mapStateToProps(state) {
-  return { habit: state.habit };
+  return { habits: state.habits };
 }
 
 const mapDispatchToProps = { fetchHabits };

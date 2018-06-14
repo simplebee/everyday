@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import DayCircle from './DayCircle';
 import moment from 'moment';
 
+import DayCircle from './DayCircle';
+import { habitPropTypes } from '../lib/propTypesValues';
+
 class WeekLine extends Component {
+  static propTypes = {
+    habit: habitPropTypes
+  };
+
   getDatapoint(date) {
     const { datapoints } = this.props.habit;
     return datapoints.find(datapoint => {

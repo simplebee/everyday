@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { makeGoalTotalSelector, makePercentSelector } from '../selectors';
+import propTypes from 'prop-types';
 import { Progress } from 'antd';
 
+import { makeGoalTotalSelector, makePercentSelector } from '../selectors';
+import { habitPropTypes } from '../lib/propTypesValues';
+
 class GoalTracker extends Component {
+  static propTypes = {
+    habit: habitPropTypes,
+    goalTotal: propTypes.number.isRequired,
+    percent: propTypes.number.isRequired
+  };
+
   render() {
     return (
       <div>
