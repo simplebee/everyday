@@ -4,6 +4,7 @@ import propTypes from 'prop-types';
 
 import EditHabitForm from './EditHabitForm';
 import { fetchHabit, editHabit } from '../actions/habitActions';
+import { habitSelector } from '../selectors';
 import { habitPropTypes } from '../lib/propTypesValues';
 
 class EditHabitPage extends Component {
@@ -69,10 +70,7 @@ class EditHabitPage extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  const { habitId } = ownProps.match.params;
-  const { habits } = state;
-  const findHabit = habits.find(obj => obj._id === habitId);
-  return { habit: findHabit };
+  return { habit: habitSelector(state, ownProps) };
 }
 
 const mapDispatchToProps = {

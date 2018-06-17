@@ -6,6 +6,7 @@ import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
 import { fetchHabit } from '../actions/habitActions';
+import { habitSelector } from '../selectors';
 import { habitPropTypes } from '../lib/propTypesValues';
 
 class Calendar extends Component {
@@ -47,10 +48,7 @@ class Calendar extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  const { habitId } = ownProps.match.params;
-  const { habits } = state;
-  const index = habits.findIndex(obj => obj._id === habitId);
-  return { habit: habits[index] };
+  return { habit: habitSelector(state, ownProps) };
 }
 
 const mapDispatchToProps = { fetchHabit };
