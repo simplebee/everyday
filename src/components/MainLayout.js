@@ -15,7 +15,7 @@ function MainLayout() {
     <Layout>
       <Header>
         <div className="logo">
-          <Link to="/">Everyday</Link>
+          <Link to="/">Trak</Link>
         </div>
         <Menu theme="dark" mode="horizontal" className="menu">
           <Menu.Item key="1">
