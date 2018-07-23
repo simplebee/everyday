@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const dataPointSchema = new Schema(
   {
     date: { type: Date, default: Date.now },
-    value: Number
+    value: { type: Number, required: true, min: 0 }
   },
   { timestamps: true }
 );
