@@ -6,7 +6,7 @@ exports.index = function(req, res) {
   Habit.findById(habitId)
     .populate('datapoints')
     .exec()
-    .then(habit => res.json(habit.datapoints))
+    .then(habit => res.json({ data: habit.datapoints }))
     .catch(err => console.error(err));
 };
 
@@ -19,7 +19,7 @@ exports.create = function(req, res) {
       Datapoint.create(req.body).then(datapointDoc => {
         habitDoc.datapoints.push(datapointDoc._id);
         habitDoc.save().then(() => {
-          res.json(datapointDoc);
+          res.json({ data: datapointDoc });
         });
       });
     })
@@ -30,7 +30,7 @@ exports.show = function(req, res) {
   const { datapointId } = req.params;
   Datapoint.findById(datapointId)
     .exec()
-    .then(datapoint => res.json(datapoint))
+    .then(datapoint => res.json({ data: datapoint }))
     .catch(err => console.error(err));
 };
 
@@ -38,7 +38,7 @@ exports.update = function(req, res) {
   const { datapointId } = req.params;
   Datapoint.findByIdAndUpdate(datapointId, { $set: req.body }, { new: true })
     .exec()
-    .then(datapoint => res.json(datapoint))
+    .then(datapoint => res.json({ data: datapoint }))
     .catch(err => console.error(err));
 };
 
@@ -54,7 +54,7 @@ exports.destroy = function(req, res) {
         { new: true }
       )
         .exec()
-        .then(() => res.json(datapoint));
+        .then(() => res.sendStatus(200));
     })
     .catch(err => console.error(err));
 };
