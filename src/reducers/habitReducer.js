@@ -7,7 +7,14 @@ import {
   ADD_DATAPOINT
 } from '../actions/actionTypes';
 
-function habit(state = [], action) {
+const intialState = {
+  entities: {
+    habits: {},
+    datapoints: {}
+  }
+};
+
+function habit(state = intialState, action) {
   switch (action.type) {
     case FETCH_HABITS:
       return action.payload;

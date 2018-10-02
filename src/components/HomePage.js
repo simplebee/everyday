@@ -19,8 +19,10 @@ class HomePage extends Component {
   }
 
   renderList() {
-    return this.props.habits.map(habit => {
-      return <HabitCard key={habit._id} habit={habit} />;
+    return Object.keys(this.props.habits.entities.habits).map(id => {
+      return (
+        <HabitCard key={id} habit={this.props.habits.entities.habits[id]} />
+      );
     });
   }
 
