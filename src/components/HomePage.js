@@ -6,12 +6,12 @@ import { Button } from 'antd';
 
 import HabitCard from './HabitCard';
 import { fetchHabits } from '../actions/habitActions';
-import { habitPropTypes } from '../lib/propTypesValues';
+import { habitsPropTypes } from '../lib/propTypesValues';
 
 class HomePage extends Component {
   static propTypes = {
     fetchHabits: propTypes.func.isRequired,
-    habits: propTypes.arrayOf(habitPropTypes).isRequired
+    habits: habitsPropTypes
   };
 
   componentDidMount() {
@@ -21,7 +21,11 @@ class HomePage extends Component {
   renderList() {
     return Object.keys(this.props.habits.entities.habits).map(id => {
       return (
-        <HabitCard key={id} habit={this.props.habits.entities.habits[id]} />
+        <HabitCard
+          key={id}
+          habit={this.props.habits.entities.habits[id]}
+          id={id}
+        />
       );
     });
   }

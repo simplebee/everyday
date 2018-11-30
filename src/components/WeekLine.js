@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 import moment from 'moment';
 
 import DayCircle from './DayCircle';
-import { habitPropTypes } from '../lib/propTypesValues';
+import { habitPropTypes, datapointPropTypes } from '../lib/propTypesValues';
 
 class WeekLine extends Component {
   static propTypes = {
-    habit: habitPropTypes
+    habit: habitPropTypes,
+    datapoints: propTypes.arrayOf(datapointPropTypes).isRequired
   };
 
   getDatapoint(date) {
-    const { datapoints } = this.props.habit;
+    const { datapoints } = this.props;
     return datapoints.find(datapoint => {
       return moment(datapoint.date).isSame(date);
     });

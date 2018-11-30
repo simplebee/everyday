@@ -31,8 +31,8 @@ const makeMapStateToProps = () => {
   const percentSelector = makePercentSelector();
   const mapStateToProps = (state, props) => {
     return {
-      goalTotal: goalTotalSelector(state, props),
-      percent: percentSelector(state, props)
+      goalTotal: goalTotalSelector(state, props.habit._id),
+      percent: percentSelector(state, props.habit._id)
     };
   };
   return mapStateToProps;

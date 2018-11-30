@@ -17,7 +17,7 @@ const intialState = {
 function habit(state = intialState, action) {
   switch (action.type) {
     case FETCH_HABITS:
-      return action.payload;
+      return { entities: action.payload.entities };
     case CREATE_HABIT:
       return addItem(state, action);
     case FETCH_HABIT:

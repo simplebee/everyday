@@ -1,7 +1,8 @@
 import { createSelector } from 'reselect';
 import { goalTotalSelector } from './index';
 
-const goalValueSelector = (state, props) => props.habit.goalValue;
+const goalValueSelector = (state, id) =>
+  state.habits.entities.habits[id].goalValue;
 
 const getPercent = (goalTotal, goalValue) => {
   let percent = goalTotal / goalValue * 100;
