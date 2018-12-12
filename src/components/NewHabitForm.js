@@ -7,6 +7,7 @@ class NewHabitForm extends Component {
   static propTypes = {
     name: propTypes.string.isRequired,
     startDate: propTypes.object.isRequired,
+    endDate: propTypes.object.isRequired,
     goalValue: propTypes.number.isRequired,
     frequency: propTypes.string.isRequired,
     handleChange: propTypes.func.isRequired,
@@ -54,6 +55,13 @@ class NewHabitForm extends Component {
               name="startDate"
               value={this.props.startDate}
               onChange={this.props.handleDatePickerChange('startDate')}
+            />
+          </Form.Item>
+          <Form.Item {...formItemLayout} label="End date">
+            <DatePicker
+              name="endDate"
+              value={this.props.endDate}
+              onChange={this.props.handleDatePickerChange('endDate')}
             />
           </Form.Item>
           <Form.Item {...formItemLayout} label="Goal value">

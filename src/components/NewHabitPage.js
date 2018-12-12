@@ -14,6 +14,7 @@ class NewHabitPage extends Component {
   state = {
     name: '',
     startDate: moment(),
+    endDate: moment().add(7, 'days'),
     goalValue: 1,
     frequency: 'daily'
   };
@@ -31,10 +32,11 @@ class NewHabitPage extends Component {
   };
 
   handleSubmit = event => {
-    const { name, startDate, goalValue, frequency } = this.state;
+    const { name, startDate, endDate, goalValue, frequency } = this.state;
     const data = {
       name,
       startDate: startDate.format('YYYY-MM-DD'),
+      endDate: endDate.format('YYYY-MM-DD'),
       goalValue: goalValue,
       frequency
     };

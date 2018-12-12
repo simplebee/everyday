@@ -19,7 +19,16 @@ function habit(state = intialState, action) {
     case FETCH_HABITS:
       return { entities: action.payload.entities };
     case CREATE_HABIT:
-      return addItem(state, action);
+      return {
+        ...state,
+        entities: {
+          ...state.entities,
+          habits: {
+            ...state.entities.habits,
+            ...action.payload.entities.habits
+          }
+        }
+      };
     case FETCH_HABIT:
       return addOrUpdateItem(state, action);
     case UPDATE_HABIT:

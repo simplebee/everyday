@@ -6,7 +6,7 @@ const datapointSchema = new schema.Entity(
   { idAttribute: '_id' }
 );
 
-const habitSchema = new schema.Entity(
+export const habitSchema = new schema.Entity(
   'habits',
   { datapoints: [datapointSchema] },
   { idAttribute: '_id' }
