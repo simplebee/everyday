@@ -27,15 +27,26 @@ function habit(state = intialState, action) {
     case DELETE_HABIT:
       return deleteItem(state, action);
     case ADD_DATAPOINT:
-      return state.map(item => {
-        if (item._id === action.habitId) {
-          return {
-            ...item,
-            datapoints: addOrUpdateItem(item.datapoints, action)
-          };
+      return {
+        ...state,
+        entities: {
+          ...state.entities,
+          habits: {
+            ...state.entities.habits,
+            [action.habitId]: {
+              ...state.entities.habits[action.habitId],
+              datapoints: [
+                ...state.entities.habits[action.habitId].datapoints,
+                action.payload._id
+              ]
+            }
+          },
+          datapoints: {
+            ...state.entities.datapoints,
+            [action.payload._id]: action.payload
+          }
         }
-        return item;
-      });
+      };
     default:
       return state;
   }

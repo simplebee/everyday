@@ -8,7 +8,7 @@ export function addDatapoint(habitId, data) {
       .then(response => {
         dispatch({
           type: ADD_DATAPOINT,
-          payload: response.data,
+          payload: response.data.data,
           habitId: habitId
         });
       })
