@@ -5,10 +5,12 @@ import { Popover, Button, InputNumber } from 'antd';
 
 import { addDatapoint } from '../actions/datapointActions';
 import { habitPropTypes } from '../lib/propTypesValues';
+import { datapointDayTotalSelector } from '../selectors';
 
 class DayCircle extends Component {
   static propTypes = {
     addDatapoint: propTypes.func.isRequired,
+    datapointDayTotal: propTypes.number.isRequired,
     habit: habitPropTypes,
     date: propTypes.object.isRequired
   };
@@ -58,15 +60,28 @@ class DayCircle extends Component {
           placement="bottomLeft"
           arrowPointAtCenter
         >
-          <div className="day-circle__circle">{this.props.children}</div>
+          <div className="day-circle__circle">
+            {this.props.children}
+            <div>{this.props.datapointDayTotal}</div>
+          </div>
         </Popover>
       </div>
     );
   }
 }
 
+const mapStateToProps = (state, props) => {
+  return {
+    datapointDayTotal: datapointDayTotalSelector(
+      state,
+      props.habit._id,
+      props.date
+    )
+  };
+};
+
 const mapDispatchToProps = {
   addDatapoint
 };
 
-export default connect(null, mapDispatchToProps)(DayCircle);
+export default connect(mapStateToProps, mapDispatchToProps)(DayCircle);

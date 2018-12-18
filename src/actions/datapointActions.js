@@ -6,9 +6,10 @@ export function addDatapoint(habitId, data) {
     axios
       .post(`/api/habit/${habitId}/datapoint`, data)
       .then(response => {
+        const data = response.data.data;
         dispatch({
           type: ADD_DATAPOINT,
-          payload: response.data.data,
+          payload: data,
           habitId: habitId
         });
       })

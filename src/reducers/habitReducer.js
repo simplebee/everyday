@@ -25,7 +25,7 @@ function habit(state = intialState, action) {
           ...state.entities,
           habits: {
             ...state.entities.habits,
-            ...action.payload.entities.habits
+            [action.payload._id]: action.payload
           }
         }
       };

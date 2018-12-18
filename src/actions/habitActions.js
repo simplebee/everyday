@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { normalize } from 'normalizr';
-import { habitListSchema, habitSchema } from './habitListSchema';
+import { habitListSchema } from './habitListSchema';
 import {
   FETCH_HABITS,
   CREATE_HABIT,
@@ -28,10 +28,9 @@ export function createHabit(data) {
       .post('/api/habit', data)
       .then(response => {
         const data = response.data.data;
-        const normalizedData = normalize(data, habitSchema);
         dispatch({
           type: CREATE_HABIT,
-          payload: normalizedData
+          payload: data
         });
       })
       .catch(error => console.log(error));
