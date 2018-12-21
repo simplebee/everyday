@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
+import { habitSelector } from './habitSelector';
 
-const habitSelector = (state, id) => state.habits.entities.habits[id];
 const allDatapointsSelector = state => state.habits.entities.datapoints;
 
 export const datapointSelector = createSelector(

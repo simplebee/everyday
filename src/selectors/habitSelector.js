@@ -1,14 +1,9 @@
 import { createSelector } from 'reselect';
 
-const habitsSelector = (state, props) => state.habits;
-const idSelector = (state, props) => props.match.params.habitId;
-
-const getHabit = (habits, id) => {
-  const index = habits.findIndex(obj => obj._id === id);
-  return habits[index];
-};
+const habitsSelector = (state, id) => state.habits.entities.habits;
+const idSelector = (state, id) => id;
 
 export const habitSelector = createSelector(
   [habitsSelector, idSelector],
-  getHabit
+  (habits, id) => habits[id]
 );

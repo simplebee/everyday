@@ -1,8 +1,7 @@
 import { createSelector } from 'reselect';
 import moment from 'moment';
 import { datapointSelector } from './datapointsSelector';
-
-const habitSelector = (state, id) => state.habits.entities.habits[id];
+import { habitSelector } from './habitSelector';
 
 const getGoalTotal = (datapoint, habit) => {
   let datapointArray = [];

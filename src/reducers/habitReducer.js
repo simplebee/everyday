@@ -17,20 +17,22 @@ const intialState = {
 function habit(state = intialState, action) {
   switch (action.type) {
     case FETCH_HABITS:
-      return { entities: action.payload.entities };
     case CREATE_HABIT:
+    case FETCH_HABIT:
       return {
         ...state,
         entities: {
           ...state.entities,
           habits: {
             ...state.entities.habits,
-            [action.payload._id]: action.payload
+            ...action.payload.entities.habits
+          },
+          datapoints: {
+            ...state.entities.datapoints,
+            ...action.payload.entities.datapoints
           }
         }
       };
-    case FETCH_HABIT:
-      return addOrUpdateItem(state, action);
     case UPDATE_HABIT:
       return updateItem(state, action);
     case DELETE_HABIT:
@@ -46,23 +48,19 @@ function habit(state = intialState, action) {
               ...state.entities.habits[action.habitId],
               datapoints: [
                 ...state.entities.habits[action.habitId].datapoints,
-                action.payload._id
+                action.payload.result
               ]
             }
           },
           datapoints: {
             ...state.entities.datapoints,
-            [action.payload._id]: action.payload
+            ...action.payload.entities.datapoints
           }
         }
       };
     default:
       return state;
   }
-}
-
-function addItem(arr, action) {
-  return [...arr, action.payload];
 }
 
 function updateItem(arr, action) {
@@ -73,14 +71,6 @@ function updateItem(arr, action) {
     }
     return item;
   });
-}
-
-function addOrUpdateItem(arr, action) {
-  const findItem = arr.findIndex(item => item._id === action.payload._id);
-  if (findItem !== -1) {
-    return updateItem(arr, action);
-  }
-  return addItem(arr, action);
 }
 
 function deleteItem(arr, action) {
