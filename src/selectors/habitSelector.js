@@ -5,5 +5,11 @@ const idSelector = (state, id) => id;
 
 export const habitSelector = createSelector(
   [habitsSelector, idSelector],
-  (habits, id) => habits[id]
+  (habits, id) => {
+    if (habits.hasOwnProperty(id)) {
+      return habits[id];
+    } else {
+      return null;
+    }
+  }
 );

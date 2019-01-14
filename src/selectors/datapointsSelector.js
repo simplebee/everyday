@@ -6,8 +6,12 @@ const allDatapointsSelector = state => state.habits.entities.datapoints;
 export const datapointSelector = createSelector(
   [habitSelector, allDatapointsSelector],
   (habit, allDatapoints) => {
-    return habit.datapoints.map(id => {
-      return allDatapoints[id];
-    });
+    if (!habit || !habit.datapoints) {
+      return null;
+    } else {
+      return habit.datapoints
+        .filter(id => allDatapoints.hasOwnProperty(id))
+        .map(id => allDatapoints[id]);
+    }
   }
 );
