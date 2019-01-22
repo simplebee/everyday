@@ -17,7 +17,7 @@ const intialState = {
 function habit(state = intialState, action) {
   switch (action.type) {
     case FETCH_HABITS:
-    case CREATE_HABIT:
+      return { entities: action.payload.entities };
     case FETCH_HABIT:
       return {
         ...state,
@@ -33,10 +33,30 @@ function habit(state = intialState, action) {
           }
         }
       };
+    case CREATE_HABIT:
     case UPDATE_HABIT:
-      return updateItem(state, action);
+      return {
+        ...state,
+        entities: {
+          ...state.entities,
+          habits: {
+            ...state.entities.habits,
+            ...action.payload.entities.habits
+          }
+        }
+      };
     case DELETE_HABIT:
-      return deleteItem(state, action);
+      return {
+        ...state,
+        entities: {
+          ...state.entities,
+          habits: deleteProp(state.entities.habits, action.habitId),
+          datapoints: deleteProp(
+            state.entities.datapoints,
+            state.entities.habits[action.habitId].datapoints
+          )
+        }
+      };
     case ADD_DATAPOINT:
       return {
         ...state,
@@ -63,18 +83,19 @@ function habit(state = intialState, action) {
   }
 }
 
-function updateItem(arr, action) {
-  const { payload } = action;
-  return arr.map(item => {
-    if (item._id === payload._id) {
-      return payload;
-    }
-    return item;
-  });
-}
-
-function deleteItem(arr, action) {
-  return arr.filter(item => item._id !== action.payload._id);
+// Remove single prop or array of props from an object
+function deleteProp(obj, prop) {
+  return Object.keys(obj)
+    .filter(item => {
+      if (Array.isArray(prop)) {
+        return prop.indexOf(item) === -1;
+      }
+      return item !== prop;
+    })
+    .reduce((acc, curr) => {
+      acc[curr] = obj[curr];
+      return acc;
+    }, {});
 }
 
 export default habit;

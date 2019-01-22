@@ -59,9 +59,11 @@ export function editHabit(habitId, data) {
     return axios
       .put(`/api/habit/${habitId}`, data)
       .then(response => {
+        const data = response.data.data;
+        const normalizedData = normalize(data, habitSchema);
         dispatch({
           type: UPDATE_HABIT,
-          payload: response.data
+          payload: normalizedData
         });
       })
       .catch(error => console.log(error));
@@ -75,7 +77,8 @@ export function deleteHabit(habitId) {
       .then(response => {
         dispatch({
           type: DELETE_HABIT,
-          payload: response.data
+          payload: response.data,
+          habitId: habitId
         });
       })
       .catch(error => console.log(error));

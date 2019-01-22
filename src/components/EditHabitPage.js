@@ -70,7 +70,7 @@ class EditHabitPage extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  return { habit: habitSelector(state, ownProps) };
+  return { habit: habitSelector(state, ownProps.match.params.habitId) };
 }
 
 const mapDispatchToProps = {
