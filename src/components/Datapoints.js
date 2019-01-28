@@ -4,6 +4,7 @@ import propTypes from 'prop-types';
 import { List } from 'antd';
 
 import { habitSelector } from '../selectors';
+import { datapointSelector } from '../selectors';
 import { fetchHabit } from '../actions/habitActions';
 import { addDatapoint } from '../actions/datapointActions';
 import { habitPropTypes } from '../lib/propTypesValues';
@@ -36,7 +37,7 @@ class Datapoints extends Component {
 
         <List
           bordered
-          dataSource={this.props.habit.datapoints}
+          dataSource={this.props.datapoints}
           renderItem={item => <DatapointItem datapoint={item} />}
         />
       </div>
@@ -45,7 +46,10 @@ class Datapoints extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  return { habit: habitSelector(state, ownProps) };
+  return {
+    habit: habitSelector(state, ownProps.match.params.habitId),
+    datapoints: datapointSelector(state, ownProps.match.params.habitId)
+  };
 }
 
 const mapDispatchToProps = { fetchHabit, addDatapoint };
