@@ -15,26 +15,27 @@ class EditHabitPage extends Component {
   };
 
   state = {
-    name: '',
-    goalValue: 1,
-    frequency: 'daily'
+    name: null,
+    goalValue: null,
+    frequency: null,
+    prevId: null
   };
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.habit && props.habit._id !== state.prevId) {
+      return {
+        name: props.habit.name,
+        goalValue: props.habit.goalValue,
+        frequency: props.habit.frequency,
+        prevId: props.habit._id
+      };
+    }
+    return null;
+  }
 
   componentDidMount() {
     const { habitId } = this.props.match.params;
     this.props.fetchHabit(habitId);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { habit } = nextProps;
-
-    if (habit) {
-      this.setState({
-        name: habit.name,
-        goalValue: habit.goalValue,
-        frequency: habit.frequency
-      });
-    }
   }
 
   handleChange = event => {
@@ -61,7 +62,9 @@ class EditHabitPage extends Component {
   render() {
     return (
       <EditHabitForm
-        {...this.state}
+        name={this.state.name}
+        goalValue={this.state.goalValue}
+        frequency={this.state.frequency}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
       />

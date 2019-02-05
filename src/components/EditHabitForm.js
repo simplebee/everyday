@@ -6,9 +6,9 @@ import { Form, Input, Radio, Button } from 'antd';
 
 class EditHabitForm extends Component {
   static propTypes = {
-    name: propTypes.string.isRequired,
-    goalValue: propTypes.number.isRequired,
-    frequency: propTypes.string.isRequired,
+    name: propTypes.string,
+    goalValue: propTypes.number,
+    frequency: propTypes.string,
     handleChange: propTypes.func.isRequired,
     handleSubmit: propTypes.func.isRequired
   };
