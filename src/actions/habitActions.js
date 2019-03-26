@@ -54,7 +54,7 @@ export function fetchHabit(habitId) {
   };
 }
 
-export function editHabit(habitId, data) {
+export function updateHabit(habitId, data) {
   return dispatch => {
     return axios
       .put(`/api/habit/${habitId}`, data)

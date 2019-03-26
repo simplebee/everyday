@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 
 import EditHabitForm from './EditHabitForm';
-import { fetchHabit, editHabit } from '../actions/habitActions';
+import { fetchHabit, updateHabit } from '../actions/habitActions';
 import { habitSelector } from '../selectors';
 import { habitPropTypes } from '../lib/propTypesValues';
 
@@ -11,7 +11,7 @@ class EditHabitPage extends Component {
   static propTypes = {
     habit: habitPropTypes,
     fetchHabit: propTypes.func.isRequired,
-    editHabit: propTypes.func.isRequired
+    updateHabit: propTypes.func.isRequired
   };
 
   state = {
@@ -54,7 +54,7 @@ class EditHabitPage extends Component {
     };
     event.preventDefault();
     this.props
-      .editHabit(habitId, data)
+      .updateHabit(habitId, data)
       .then(() => this.props.history.push('/app'))
       .catch(error => console.log(error));
   };
@@ -78,7 +78,10 @@ function mapStateToProps(state, ownProps) {
 
 const mapDispatchToProps = {
   fetchHabit,
-  editHabit
+  updateHabit
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditHabitPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EditHabitPage);
