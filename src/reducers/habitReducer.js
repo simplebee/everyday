@@ -4,7 +4,7 @@ import {
   FETCH_HABIT,
   UPDATE_HABIT,
   DELETE_HABIT,
-  ADD_DATAPOINT
+  CREATE_DATAPOINT
 } from '../actions/actionTypes';
 
 const intialState = {
@@ -57,7 +57,7 @@ function habit(state = intialState, action) {
           )
         }
       };
-    case ADD_DATAPOINT:
+    case CREATE_DATAPOINT:
       return {
         ...state,
         entities: {

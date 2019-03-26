@@ -25,7 +25,7 @@ class DatapointsAdd extends Component {
     };
 
     event.preventDefault();
-    this.props.addDatapoint(_id, data);
+    this.props.createDatapoint(_id, data);
   };
 
   render() {

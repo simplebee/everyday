@@ -6,7 +6,7 @@ import { List } from 'antd';
 import { habitSelector } from '../selectors';
 import { datapointSelector } from '../selectors';
 import { fetchHabit } from '../actions/habitActions';
-import { addDatapoint } from '../actions/datapointActions';
+import { createDatapoint } from '../actions/datapointActions';
 import { habitPropTypes } from '../lib/propTypesValues';
 import DatapointItem from './DatapointItem';
 import DatapointAdd from './DatapointAdd';
@@ -15,7 +15,7 @@ class Datapoints extends Component {
   static propTypes = {
     habit: habitPropTypes,
     fetchHabit: propTypes.func.isRequired,
-    addDatapoint: propTypes.func.isRequired
+    createDatapoint: propTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -32,7 +32,7 @@ class Datapoints extends Component {
       <div>
         <DatapointAdd
           habit={this.props.habit}
-          addDatapoint={this.props.addDatapoint}
+          createDatapoint={this.props.createDatapoint}
         />
 
         <List
@@ -52,6 +52,9 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-const mapDispatchToProps = { fetchHabit, addDatapoint };
+const mapDispatchToProps = { fetchHabit, createDatapoint };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Datapoints);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Datapoints);

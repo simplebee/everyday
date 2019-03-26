@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { normalize } from 'normalizr';
-import { ADD_DATAPOINT } from './actionTypes';
+import { CREATE_DATAPOINT } from './actionTypes';
 import { datapointSchema } from './habitListSchema';
 
-export function addDatapoint(habitId, data) {
+export function createDatapoint(habitId, data) {
   return dispatch => {
     axios
       .post(`/api/habit/${habitId}/datapoint`, data)
@@ -11,7 +11,7 @@ export function addDatapoint(habitId, data) {
         const data = response.data.data;
         const normalizedData = normalize(data, datapointSchema);
         dispatch({
-          type: ADD_DATAPOINT,
+          type: CREATE_DATAPOINT,
           payload: normalizedData,
           habitId: habitId
         });

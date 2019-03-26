@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { Popover, Button, InputNumber } from 'antd';
 
-import { addDatapoint } from '../actions/datapointActions';
+import { createDatapoint } from '../actions/datapointActions';
 import { habitPropTypes } from '../lib/propTypesValues';
 import { datapointDayTotalSelector } from '../selectors';
 
 class DayCircle extends Component {
   static propTypes = {
-    addDatapoint: propTypes.func.isRequired,
+    createDatapoint: propTypes.func.isRequired,
     datapointDayTotal: propTypes.number.isRequired,
     habit: habitPropTypes,
     date: propTypes.object.isRequired
@@ -34,7 +34,7 @@ class DayCircle extends Component {
       date: dateStr,
       value: datapointValue
     };
-    this.props.addDatapoint(_id, data);
+    this.props.createDatapoint(_id, data);
   };
 
   render() {
@@ -81,7 +81,10 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = {
-  addDatapoint
+  createDatapoint
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DayCircle);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DayCircle);
