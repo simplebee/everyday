@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 import { Button, Form, Input, DatePicker } from 'antd';
 import moment from 'moment';
+import { habitPropTypes } from '../lib/propTypesValues';
 
 class DatapointsAdd extends Component {
+  static propTypes = {
+    habit: habitPropTypes,
+    createDatapoint: propTypes.func.isRequired
+  };
+
   state = {
     value: 0,
     date: moment()
