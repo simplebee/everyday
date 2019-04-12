@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { List } from 'antd';
 
-import { habitSelector } from '../selectors';
-import { datapointSelector } from '../selectors';
+import { habitSelector, datapointSelector } from '../selectors';
 import { fetchHabit } from '../actions/habitActions';
 import { createDatapoint } from '../actions/datapointActions';
 import { habitPropTypes } from '../lib/propTypesValues';
