@@ -1,27 +1,68 @@
 import React, { Component } from 'react';
-import { Row, Col, List, Button } from 'antd';
+import propTypes from 'prop-types';
+import { List, Button, Form, Input, DatePicker } from 'antd';
 import moment from 'moment';
+import { datapointPropTypes } from '../lib/propTypesValues';
 
 class DatapointItem extends Component {
+  static propTypes = {
+    datapoint: datapointPropTypes,
+    habitId: propTypes.string.isRequired,
+    updateDatapoint: propTypes.func.isRequired
+  };
+
+  state = {
+    date: moment(this.props.datapoint.date),
+    value: this.props.datapoint.value
+  };
+
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  handleDatePickerChange = name => date => {
+    this.setState({
+      [name]: date
+    });
+  };
+
+  handleEditClick = event => {
+    const { habitId, datapoint } = this.props;
+    const data = {
+      date: this.state.date.toDate(),
+      value: Number(this.state.value)
+    };
+    this.props.updateDatapoint(habitId, datapoint._id, data);
+  };
+
   render() {
     return (
       <List.Item>
-        <div style={{ width: '100%' }}>
-          <Row>
-            <Col span={12}>
-              <div>
-                {moment(this.props.datapoint.date).format('DD/MM/YYYY')}
-              </div>
-            </Col>
-            <Col span={12}>
-              <div>{this.props.datapoint.value}</div>
-            </Col>
-          </Row>
-        </div>
-        <span style={{ float: 'left' }}>
-          <Button>edit</Button>
-          <Button>delete</Button>
-        </span>
+        <Form layout="inline">
+          <Form.Item>
+            <DatePicker
+              name="date"
+              value={this.state.date}
+              onChange={this.handleDatePickerChange('date')}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Input
+              name="value"
+              value={this.state.value}
+              onChange={this.handleChange}
+              type="number"
+            />
+          </Form.Item>
+          <Form.Item>
+            <span style={{ float: 'left' }}>
+              <Button onClick={this.handleEditClick}>edit</Button>
+              <Button>delete</Button>
+            </span>
+          </Form.Item>
+        </Form>
       </List.Item>
     );
   }
