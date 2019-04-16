@@ -5,7 +5,7 @@ const goalValueSelector = (state, id) =>
   state.habits.entities.habits[id].goalValue;
 
 const getPercent = (goalTotal, goalValue) => {
-  let percent = goalTotal / goalValue * 100;
+  let percent = (goalTotal / goalValue) * 100;
   if (percent > 100) percent = 100;
   return percent;
 };

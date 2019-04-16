@@ -52,4 +52,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = { fetchHabits };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomePage);

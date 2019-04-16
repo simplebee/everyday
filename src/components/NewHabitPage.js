@@ -61,4 +61,7 @@ class NewHabitPage extends Component {
 
 const mapDispatchToProps = { createHabit };
 
-export default connect(null, mapDispatchToProps)(NewHabitPage);
+export default connect(
+  null,
+  mapDispatchToProps
+)(NewHabitPage);

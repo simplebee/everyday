@@ -29,4 +29,7 @@ class Calendar extends Component {
 
 const mapDispatchToProps = { fetchHabit };
 
-export default connect(null, mapDispatchToProps)(Calendar);
+export default connect(
+  null,
+  mapDispatchToProps
+)(Calendar);

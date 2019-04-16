@@ -40,4 +40,9 @@ class HabitPageContent extends Component {
 
 const mapDispatchToProps = { deleteHabit };
 
-export default withRouter(connect(null, mapDispatchToProps)(HabitPageContent));
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(HabitPageContent)
+);
