@@ -22,3 +22,5 @@ export const habitsPropTypes = propTypes.shape({
     datapoints: propTypes.objectOf(datapointPropTypes)
   }).isRequired
 }).isRequired;
+
+export const datapointsPropTypes = propTypes.arrayOf(datapointPropTypes);
