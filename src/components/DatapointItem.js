@@ -8,7 +8,8 @@ class DatapointItem extends Component {
   static propTypes = {
     datapoint: datapointPropTypes,
     habitId: propTypes.string.isRequired,
-    updateDatapoint: propTypes.func.isRequired
+    updateDatapoint: propTypes.func.isRequired,
+    deleteDatapoint: propTypes.func.isRequired
   };
 
   state = {
@@ -37,6 +38,11 @@ class DatapointItem extends Component {
     this.props.updateDatapoint(habitId, datapoint._id, data);
   };
 
+  handleDeleteClick = event => {
+    const { habitId, datapoint } = this.props;
+    this.props.deleteDatapoint(habitId, datapoint._id);
+  };
+
   render() {
     return (
       <List.Item>
@@ -59,7 +65,7 @@ class DatapointItem extends Component {
           <Form.Item>
             <span style={{ float: 'left' }}>
               <Button onClick={this.handleEditClick}>edit</Button>
-              <Button>delete</Button>
+              <Button onClick={this.handleDeleteClick}>delete</Button>
             </span>
           </Form.Item>
         </Form>
