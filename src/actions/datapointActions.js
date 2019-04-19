@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { normalize } from 'normalizr';
-import { CREATE_DATAPOINT, UPDATE_DATAPOINT } from './actionTypes';
+import {
+  CREATE_DATAPOINT,
+  UPDATE_DATAPOINT,
+  DELETE_DATAPOINT
+} from './actionTypes';
 import { datapointSchema } from './habitListSchema';
 
 export function createDatapoint(habitId, data) {
@@ -30,6 +34,22 @@ export function updateDatapoint(habitId, datapointId, data) {
         dispatch({
           type: UPDATE_DATAPOINT,
           payload: normalizedData
+        });
+      })
+      .catch(error => console.log(error));
+  };
+}
+
+export function deleteDatapoint(habitId, datapointId) {
+  return dispatch => {
+    axios
+      .delete(`/api/habit/${habitId}/datapoint/${datapointId}`)
+      .then(response => {
+        dispatch({
+          type: DELETE_DATAPOINT,
+          payload: response.data,
+          habitId: habitId,
+          datapointId: datapointId
         });
       })
       .catch(error => console.log(error));

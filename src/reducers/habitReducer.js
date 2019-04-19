@@ -5,7 +5,8 @@ import {
   UPDATE_HABIT,
   DELETE_HABIT,
   CREATE_DATAPOINT,
-  UPDATE_DATAPOINT
+  UPDATE_DATAPOINT,
+  DELETE_DATAPOINT
 } from '../actions/actionTypes';
 
 const intialState = {
@@ -90,9 +91,31 @@ function habit(state = intialState, action) {
           }
         }
       };
+    case DELETE_DATAPOINT:
+      return {
+        ...state,
+        entities: {
+          ...state.entities,
+          habits: {
+            ...state.entities.habits,
+            [action.habitId]: {
+              ...state.entities.habits[action.habitId],
+              datapoints: deleteArrayItem(
+                state.entities.habits[action.habitId].datapoints,
+                action.datapointId
+              )
+            }
+          },
+          datapoints: deleteProp(state.entities.datapoints, action.datapointId)
+        }
+      };
     default:
       return state;
   }
+}
+
+function deleteArrayItem(arr, item) {
+  return arr.filter(element => element !== item);
 }
 
 // Remove single prop or array of props from an object
